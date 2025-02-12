@@ -7,9 +7,7 @@
 	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}">
-	
-    
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}"> 
 </head>
 <body>
 	<img class="wave" src="{{ asset('images/wave.png') }}">
@@ -58,21 +56,16 @@
                 <a href="{{ route('company.forgetPassword') }}">Forgot Password?</a>
                 </div>
                 <input type="submit" class="btn" value="Login">
-				<div class="btns-parent">
+				{{-- <div class="btns-parent">
 					<button class="googleORfacebook-btn">Continue with Google</button>
 					<button class="googleORfacebook-btn">Continue with FaceBook</button>
-				</div>
+				</div> --}}
                 <div class=" d-flex" style="display:flex;justify-content: flex-end;align-items: center;">
                 <div class="signup-section">Not a member yet?</div>
                 <div>
                 <a href="{{ route('user.register') }}" class="text-info">Sign Up</a>
                 </div>
                 </div>
-            	
-                
-
-				
-            	
             </form>
 
         </div>
