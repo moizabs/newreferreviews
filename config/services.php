@@ -29,9 +29,5 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-    'google' => [
-        'client_id' => '783244350656-s4737pn1gd17ihgd9aud6e1mu4hf3b5p.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'https://review.daydispatch.com/google/callback',
-    ],
+   google-client-id
 ];
