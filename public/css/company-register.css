@@ -1,0 +1,40 @@
+
+
+.wave{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	z-index: -1;   
+  filter: hue-rotate(-278deg);
+}
+.parent{
+    display: flex;
+    justify-content: space-around;
+    margin:  25px auto; 
+}
+.first-child{
+    /* background-color: aqua ; */
+    width: 500px;
+    }
+.second-child{
+    width: 400px;
+}
+.second-child-main-div{
+     padding: 20px;
+     border: 2px solid #00539c;
+     border-radius: 10px;
+}
+@media only screen and (max-width: 900px) {
+    .parent {
+        display: block;
+        margin: 50px;
+    }
+    .first-child{
+        display: none;
+    }
+    .second-child{
+        width: 100%;
+    }
+
+  }
