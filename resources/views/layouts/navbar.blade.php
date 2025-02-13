@@ -147,7 +147,7 @@
 
                                                         @else
                                                             
-                                                            <img src="{{ asset('images/profile-image.jpg') }}"
+                                                            <img src="{{ asset('images/profile-image.webp') }}"
                                                                 class="rounded-circle" height="50" width="50" alt="Avatar"
                                                                 loading="lazy">
                                                         @endif

@@ -258,6 +258,7 @@ class CompanyController extends Controller
             $path = $img->storeAs($destination,$filename);
             $companyUpdate->image =  $filename;
         }
+        
         $companyUpdate->save();
         Session::put('user', $companyUpdate);
         Session::get('user');

@@ -103,29 +103,16 @@
                                             </div>
                                             <div class="avatar-preview">
                                                 <!--<img id="imagePreview" class="image-upload" src="https://www.loginradius.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png">-->
-                                            @if (Session::get('user')['image'])
-                                               
-                                                 <img id="imagePreview" class="image-upload"  src="{{ asset('storage/userProfile/'.Session::get('user')['image'] )  }}" alt="image">
-                                                {{ Session::get('user')['image'] }}
+                                            @if (Session::get('user')['image'] != null)
+                                                 <img id="imagePreview" class="image-upload" name="image" src="{{ asset('storage/userProfile/'.Session::get('user')['image'] ) }}" alt="image">
                                             @else
-                                                <img id="imagePreview" class="image-upload"  src="{{ asset('images/avatar.png')  }}" alt="image">
-
+                                                <img id="imagePreview" class="image-upload" name="image" src="{{ asset('images/profile-image.webp')  }}" alt="image">
                                             @endif
-                                                
-                                           
                                             </div>
-                                            
                                            <button type='submit' class="btn my-4" style="background: var(--button-color); color:#fff" >Submit</button>
                                         </div>
-                                       
                                     </form>
-
-
-
-
                                         </div>
-
-                                        
                                     </div>
                                 </div>
                             </div>

@@ -17,6 +17,7 @@ use App\Http\Controllers\ImagesController;
 use App\Http\Controllers\RequestPriceController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ChatController;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -72,7 +73,7 @@ Route::group(['middleware' => ['Admin']], function () {
     Route::get('admin/deactive_AllReviews/{id}',[AdminOperation::class, 'onAllReviews'])->name('admin.deactiveReview');
     Route::post('admin/edit_customer_review/{review_id}',[AdminOperation::class, 'editCustomerReview'])->name('admin.edit_customer_review');
     Route::get('admin/view_business_profile/{id}',[AdminOperation::class, 'viewBusinessReview'])->name('admin.viewBusinessProfile');
-    Route::get('admin/view_request_price',[RequestPriceController::class, 'index'])->name('admin.viewRequestPrice');
+    // Route::get('admin/view_request_price',[RequestPriceController::class, 'index'])->name('admin.viewRequestPrice');
     
     // Add Category
     Route::get('admin/add_category',[CategoryController::class, 'index'])->name('admin.addCategory');
@@ -117,6 +118,12 @@ Route::post('user/registerSubmit',[UserController::class, 'registerSubmit'])->na
 Route::get('user/login',[UserController::class, 'loginView'])->name('user.login');
 Route::post('user/loginSubmit',[UserController::class, 'loginSubmit'])->name('user.login.submit');
 Route::get('user/forget_password',[UserForgetController::class, 'userForgetView'])->name('user.forgetPassword');
+Route::get('verify-email/{token}', [UserController::class, 'verifyEmail'])->name('verify.email');
+Route::get('email-verification', [UserController::class, 'email_verification_view'])->name('email.verification');
+
+Route::get('register/confirm', function () {
+    return view('auth.register-confirm');
+})->name('register.confirm');
 
 // Business Routes
 Route::group(['middleware' => ['Business']], function () {
@@ -189,7 +196,7 @@ Route::post('company/email_verify',[ForgetPassword::class,'emailVerify'])->name(
 Route::get('company/reset-password/{token}', [ForgetPassword::class, 'showResetPasswordForm'])->name('company.reset.password.get');
 
 // Contact_us
-Route::get('sendemail',[SendEmailController::class, 'send_email'])->name('contactus.email');
+// Route::get('sendemail',[SendEmailController::class, 'send_email'])->name('contactus.email');
 
 // Recover Password
 

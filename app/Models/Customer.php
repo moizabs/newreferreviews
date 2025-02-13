@@ -30,6 +30,8 @@ class Customer extends Model
         'image',
         'phone',
         'status',
+        'email_verified_at',
+        'verification_token',
         'type',
     ];
 

@@ -9,10 +9,17 @@ use App\Models\Customer;
 use App\Models\Review;
 use App\Models\Category;
 use Illuminate\Support\Facades\Session;
-use Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use App\Mail\EmailVerification;
 
 class UserController extends Controller
 {
+
+    public function email_verification_view(){
+        return view('user.auth.email_verification');
+    }
 
     public function index(){
         if(Session::get('user')) { 
@@ -90,8 +97,7 @@ class UserController extends Controller
     }
     
     public function addImage(Request $request){
-        
-       
+    
             $user = Session::get('user');
             $customer = Customer::find($user->id );
             
@@ -103,20 +109,16 @@ class UserController extends Controller
                     $path = $img->storeAs($destination,$filename);
                     $customer->image =  $filename;
                     $customer->save();
-                    
-                    
             }
             Session::put('user',$customer);
             Session::get('user');
                 
             return back()->with('success','Profile Updated');
-                
-       
+                      
     }
 
 
     public function registerView(){
-           
         return view('user.auth.register');
     }
 
@@ -126,65 +128,68 @@ class UserController extends Controller
 
     public function loginSubmit(Request $request){
         
-        // validate the request
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'
         ]);        
+
         $user = Customer::where('email','=', $request->email)->first();
 
-        if ($user) {
+        if ($user && $user->email_verified_at) {
             if (Hash::check($request->password, $user->password)) {
                 session()->put('user', $user);
                 return redirect()->route('home');
-
             } else {
                 return back()->with('fail', 'Password not Matches');
             }
         } else {
-            return back()->with('fail', 'Invalid Email');
-
+            return redirect()->route('user.register')->with('error', 'Please verify your email before proceeding.');
+            // return back()->with('fail', 'Invalid Email');
         }
     }
 
-
-
-    public function registerSubmit(Request $request){
+    public function registerSubmit(Request $request)
+    {
         $validator = Validator::make($request->all(), [
-    
-          'first_name' => 'required',
-          'last_name' => 'required',
-          'email' => 'required|unique:customers,email',
-          'password' => 'required|min:8'
-       ]);
+            'first_name' => 'required|string|min:3|max:25|alpha',
+            'last_name' => 'required|string|min:3|max:25|alpha',
+            'email' => 'required|email|unique:customers,email',
+            'password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/',
+        ]);
 
-        if($validator->passes()) { 
-            
-            $user = new Customer();
-    
-            $user->first_name = $request->first_name;
-            $user->last_name = $request->last_name;
-            $user->email = $request->email;
-            $user->phone = $request->phone;
-            $user->password = Hash::make($request->password);
-    
-            if($request->hasFile('image'))
-            {
-                $destination = 'public/userProfile';
-                $img = $request->file('image');
-                $filename = time().'-'.$img->getClientOriginalName();
-                $path = $img->storeAs($destination,$filename);
-                $user->image =  $filename;
-            }
-    
-            $user->save();
-            return redirect()
-                ->route('user.login')
-                ->with('success','You have successfully registered, Login to access your profile');
-      }
-      else{
-          return back()->withErrors($validator)->withInput();
-      }
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $user = Customer::create([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'verification_token' => Str::random(60),
+        ]);
+
+        Mail::to($user->email)->send(new EmailVerification($user));
+
+        return redirect()->route('user.login')
+                         ->with('success', 'You have successfully registered. Please check your email to verify your account.');
+    }
+
+    public function verifyEmail($token)
+    {
+        $user = Customer::where('verification_token', $token)->first();
+
+        if (!$user) {
+            return redirect()->route('user.register')
+                             ->with('error', 'Invalid token!');
+        }
+
+        $user->email_verified_at = now();
+        $user->verification_token = null;
+        $user->save();
+
+        return redirect()->route('user.login')
+                         ->with('success', 'Email successfully verified!');
     }
 
     public function userLogout() {

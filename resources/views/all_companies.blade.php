@@ -34,8 +34,7 @@
                         <span typeof="v:Breadcrumb">
                             <a href="{{ route('home') }}">Home</a>
                         </span>
-                        
-                        
+                         
                     </div>
                     <div class="col-sm-12 col-md-12 col-lg-6 search-form">
                         <form id="searchform" action="{{ route('all.companies') }}" method="GET">
@@ -96,6 +95,7 @@
             </div>
         </div>
     </div>
+    
     {{-- Pagination --}}
     <nav aria-label="Page navigation example">
         <div class="d-flex justify-content-center">

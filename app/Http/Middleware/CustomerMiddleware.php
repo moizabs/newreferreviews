@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use App\Models\Customer;
 
 class CustomerMiddleware
 {
@@ -18,9 +19,9 @@ class CustomerMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(!Session::has('user')){
-
             return redirect()->route('user.login');
         }
+
         return $next($request);
     }
 }
