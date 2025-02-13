@@ -1,0 +1,106 @@
+.dropdown {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    
+}
+
+.dropdown-toggle {
+    background: #fff;
+    padding: 10px;
+    color: #6c757d;
+    opacity: 1;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.dropdown-menu {
+    display: none;
+    width: 100%;
+    background: #fff;
+    color: #6c757d;
+    opacity: 1;
+    border: 1px solid #ccc;
+    list-style: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-menu li:hover {
+    background: #f0f0f0;
+}
+
+.show {
+    display: block;
+}
+.form-parent{
+    border: 2px solid #213770;
+    border-radius: 10px;
+    display: flex;
+}
+.form-parent .childs{
+    height: 60px;
+    width: 100%;
+    display: flex;
+}
+.form-parent .childs .childs-inp{
+    height: 60px;
+    padding-left: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.form-parent .window-screen-search-btn .img{
+    width: 70px;
+}
+.submit-btn-parent{
+    display: none;
+}
+@media (max-width: 780px) {
+    .form-parent {
+        padding-top: 30px;
+        border: none;
+        display: block;
+        background-color: #d3ebf8;
+    }
+    .form-parent .childs{
+        margin-bottom: 4px;
+    }
+    .form-parent .childs .childs-inp{
+        border-radius: 5px;
+    }
+    .window-screen-search-btn{
+        display: none;
+    }
+    .submit-btn-parent{
+      width: 100%;
+    }
+    .submit-btn{
+        display: flex;
+        justify-content:center ;
+        background-color: #213770;
+        width: 200px;
+        border: 2px solid #1d2e57;
+        border-radius: 5px;
+        margin: 20px auto;
+        padding:10px 5px ;
+        color: #fff;
+        
+    }
+    /* .img{
+        margin-left: 8px;
+        width: 10px;
+    } */
+    .submit-btn-parent{
+        display: flex;
+    }
+    
+}
