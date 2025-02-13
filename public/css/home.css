@@ -1,11 +1,12 @@
-.dropdown {
+.dropdown2 {
     height: 60px;
     width: 100%;
-    display: flex;
+    position: relative;
+    /* display: flex; */
     
 }
 
-.dropdown-toggle {
+.dropdown-toggle2 {
     background: #fff;
     padding: 10px;
     color: #6c757d;
@@ -16,10 +17,14 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 5px;
+    height: 60px;
 }
 
-.dropdown-menu {
+.dropdown-menu2 {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
     width: 100%;
     background: #fff;
     color: #6c757d;
@@ -29,16 +34,16 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.dropdown-menu li {
+.dropdown-menu2 li {
     padding: 10px;
     cursor: pointer;
 }
 
-.dropdown-menu li:hover {
+.dropdown-menu2 li:hover {
     background: #f0f0f0;
 }
 
-.show {
+.show2 {
     display: block;
 }
 .form-parent{

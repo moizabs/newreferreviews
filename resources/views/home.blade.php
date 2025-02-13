@@ -204,9 +204,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 flex_ banner">
-                            <div class=" col-sm-12 col-md-12 ospadop banner-text">
-                                <h5>Every review has a significant experience that goes with it.</h5>
-                                <p style="color: #5c5757; margin-bottom: 10px; font-weight: 600;">
+                            <div class=" col-sm-12  col-md-12 ospadop banner-text">
+                                <h5 class="text-center">Every review has a significant experience that goes with it.</h5>
+                                <p style="color: #5c5757; margin-bottom: 10px; font-weight: 600; text-align:center;">
                                     Get the finest services based on reviews.</p>
                                 <form action="{{ route('all.companies') }}" method="GET">
                                     @csrf
@@ -224,17 +224,17 @@
                                         {{-- <input type="text" name="search"
                                             class=" typeahead form-control search-input" id="search"
                                             placeholder="Find Category here.." aria-describedby="basic-addon2"> --}}
-                                            <div class="dropdown">
-                                                <div class="dropdown-toggle" onclick="toggleDropdown()">Select Category ▼</div>
-                                                <ul class="dropdown-menu" id="dropdownMenu">
+                                            <div class="dropdown2">
+                                                <div class="dropdown-toggle2" onclick="toggleDropdown2()">Select Category ▼</div>
+                                                <ul class="dropdown-menu2" id="dropdownMenu2">
                                                     <li onclick="selectItem(this)">Category 1</li>
                                                     <li onclick="selectItem(this)">Category 2</li>
                                                     <li onclick="selectItem(this)">Category 3</li>
                                                     <li onclick="selectItem(this)">Category 4</li>
                                                 </ul>
                                             </div>
-                                        {{-- <div id="SearchResults" class="custom-search-results">
-                                        </div> --}}
+                                        <div id="SearchResults" class="custom-search-results">
+                                        </div>
                                             <button type="submit" class="input-group-addon btn-main window-screen-search-btn">
                                                 <img src="{{ asset('images/search.webp') }} " alt="search"
                                                     class="img">
@@ -654,22 +654,22 @@
     </script>
     {{-- // custom dropdown javascript //  --}}
     <script>
-        function toggleDropdown() {
-            document.getElementById("dropdownMenu").classList.toggle("show");
+        function toggleDropdown2() {
+            document.getElementById("dropdownMenu2").classList.toggle("show2");
         }
 
         function selectItem(element) {
-            let dropdownMenu = document.getElementById("dropdownMenu");
-            dropdownMenu.prepend(element);
-            document.querySelector(".dropdown-toggle").innerText = element.innerText + " ▼";
-            dropdownMenu.classList.remove("show");
+            let dropdownMenu2 = document.getElementById("dropdownMenu2");
+            dropdownMenu2.prepend(element);
+            document.querySelector(".dropdown-toggle2").innerText = element.innerText + " ▼";
+            dropdownMenu2.classList.remove("show2");
         }
 
         // Close dropdown if clicked outside
         document.addEventListener("click", function(event) {
-            let dropdown = document.querySelector(".dropdown");
-            if (!dropdown.contains(event.target)) {
-                document.getElementById("dropdownMenu").classList.remove("show");
+            let dropdown2 = document.querySelector(".dropdown2");
+            if (!dropdown2.contains(event.target)) {
+                document.getElementById("dropdownMenu2").classList.remove("show2");
             }
         });
     </script>
