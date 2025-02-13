@@ -33,22 +33,27 @@ class HomeController extends Controller
     
     public function allCompanies(Request $request){
         
-            $search = $request->search;
-            $cate_id = $request->category_id;
-            
+            $company_name = $request->company_search;
+            $company_location = $request->location_search;
+            $company_category = $request->category_search;
+                        
             $companies = Business::with('avg','get_category')
             ->where('status',1)
-            ->where(function ($q) use ($search){
-                if($search){
-                    
+            ->where(function ($q) use ($company_name){
+                if($company_name){
                 $q
-                ->orWhere('comp_name','LIKE',"%". $search ."%")
-                ->orWhere('name','LIKE',"%". $search ."%");
+                ->orWhere('comp_name','LIKE',"%". $company_name ."%")
+                ->orWhere('name','LIKE',"%". $company_name ."%");
                 }
             })
-            ->where(function ($q2) use ($cate_id){
-                if($cate_id){
-                    $q2->orWhere('category_id','LIKE',"%". $cate_id ."%");
+            ->where(function ($q2) use ($company_category){
+                if($company_category){
+                    $q2->orWhere('subcategory_id','LIKE',"%". $company_category ."%");
+                }
+            })
+            ->where(function ($q3) use ($company_location){
+                if($company_location){
+                    $q3->orWhere('city','LIKE',"%". $company_location ."%");
                 }
             })
             ->orderBy('created_at','ASC')
@@ -110,11 +115,9 @@ class HomeController extends Controller
         $data = Business::where('comp_name','LIKE',"%{$input['query']}%")
             ->where('name','LIKE',"%{$input['query']}%")
             ->get();
-           
-   
         return response()->json($data);
     }
-    
+        
     public function searchCompanies(Request $request){
         $companies = Business::with('avg','get_category')->withAvg('avg','rating')
             ->where('status',1)

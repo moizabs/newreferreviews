@@ -212,27 +212,29 @@
                                     @csrf
                                     <div class="form-parent">
                                         <div class="childs">
-                                            <input type="text" name="search"
-                                                class="childs-inp " id="search"
-                                                placeholder="Find Companies here.." aria-describedby="basic-addon2">
+                                            <input type="text" name="company_search"
+                                                class="childs-inp" id="search"
+                                                placeholder="Find by Company name here.." aria-describedby="basic-addon2">
                                         </div>
                                         <div class="childs">
-                                            <input type="text" name="search"
-                                                class="childs-inp " id="search"
-                                                placeholder="Find Location here.." aria-describedby="basic-addon2">
+                                            <input type="text" name="location_search"
+                                                class="childs-inp"
+                                                placeholder="Find by Location here.." aria-describedby="basic-addon2">
                                         </div>
                                         {{-- <input type="text" name="search"
                                             class=" typeahead form-control search-input" id="search"
                                             placeholder="Find Category here.." aria-describedby="basic-addon2"> --}}
+                                            
                                             <div class="dropdown2">
                                                 <div class="dropdown-toggle2" onclick="toggleDropdown2()">Select Category ▼</div>
                                                 <ul class="dropdown-menu2" id="dropdownMenu2">
-                                                    <li onclick="selectItem(this)">Category 1</li>
-                                                    <li onclick="selectItem(this)">Category 2</li>
-                                                    <li onclick="selectItem(this)">Category 3</li>
-                                                    <li onclick="selectItem(this)">Category 4</li>
+                                                    @foreach($categories as $category)
+                                                    <li onclick="selectItem(this)" data-value="{{ $category->id }}">{{ $category->name }}</li>
+                                                    @endforeach
                                                 </ul>
                                             </div>
+                                            <input type="hidden" id="categoryId" name="category_search">
+
                                         <div id="SearchResults" class="custom-search-results">
                                         </div>
                                             <button type="submit" class="input-group-addon btn-main window-screen-search-btn">
@@ -241,8 +243,7 @@
                                             </button>
 
                                         <div class="submit-btn-parent">
-                                           
-                                            <button type="submit" class=" submit-btn">
+                                            <button type="submit" class="submit-btn">
                                                 <span>Search </span>
                                                 {{-- <img src="{{ asset('images/search.webp') }} " alt="search"
                                                     class="img"> --}}
@@ -566,14 +567,23 @@
     <!-- Link to page -->
     @include('layouts.foot')
     <script defer>
-        var path = "{{ route('searchAllCompanies') }}";
+        var path_company_name = "{{ route('searchAllCompanies') }}";
         $(document).ready(function() {
             $('#search').typeahead({
                 source: function(query, process) {
-                    return $.get(path, {
+                    return $.get(path_company_name, {
                         query: query
                     }, function(data) {
                         return process(data);
+                    });
+                }
+            });
+            $('#search-location').typeahead({
+                source: function(query2, process2) {
+                    return $.get(path_location, {
+                        query2: query2
+                    }, function(data2) {
+                        return process2(data2);
                     });
                 }
             });
@@ -663,6 +673,8 @@
             dropdownMenu2.prepend(element);
             document.querySelector(".dropdown-toggle2").innerText = element.innerText + " ▼";
             dropdownMenu2.classList.remove("show2");
+            const selectedCategoryId = element.getAttribute('data-value');
+            document.getElementById('categoryId').value = selectedCategoryId;
         }
 
         // Close dropdown if clicked outside
