@@ -197,50 +197,57 @@
 
 <body>
     @include('layouts.navbar')
-    <div class="main" style="background:#d3ebf8; ">
+    <div class="main"
+        style="background-image: url('{{ asset('images/herosection-image.webp') }}'); 
+               background-size: auto; 
+               background-repeat: no-repeat;
+               ">
         {{-- <div class="search-bar" style="position: absolute">moiz</div> --}}
-        <div class="absolute-center">
+        <div class="absolute-center " style=" background-color: rgba(0, 0, 0, 0.5); ">
             <div class="section">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 flex_ banner">
                             <div class=" col-sm-12  col-md-12 ospadop banner-text">
-                                <h5 class="text-center">Every review has a significant experience that goes with it.</h5>
-                                <p style="color: #5c5757; margin-bottom: 10px; font-weight: 600; text-align:center;">
+                                <h5 class="text-center text-white">Every review has a significant experience that goes
+                                    with it.
+                                </h5>
+                                <p style="color: #fff; margin-bottom: 10px; font-weight: 600; text-align:center;">
                                     Get the finest services based on reviews.</p>
                                 <form action="{{ route('all.companies') }}" method="GET">
                                     @csrf
                                     <div class="form-parent">
                                         <div class="childs">
-                                            <input type="text" name="company_search"
-                                                class="childs-inp" id="search"
-                                                placeholder="Find by Company name here.." aria-describedby="basic-addon2">
+                                            <input type="text" name="company_search" class="childs-inp"
+                                                id="search" placeholder="Find by Company name here.."
+                                                aria-describedby="basic-addon2">
                                         </div>
                                         <div class="childs">
-                                            <input type="text" name="location_search"
-                                                class="childs-inp"
+                                            <input type="text" name="location_search" class="childs-inp"
                                                 placeholder="Find by Location here.." aria-describedby="basic-addon2">
                                         </div>
                                         {{-- <input type="text" name="search"
                                             class=" typeahead form-control search-input" id="search"
                                             placeholder="Find Category here.." aria-describedby="basic-addon2"> --}}
-                                            
-                                            <div class="dropdown2">
-                                                <div class="dropdown-toggle2" onclick="toggleDropdown2()">Select Category ▼</div>
-                                                <ul class="dropdown-menu2" id="dropdownMenu2">
-                                                    @foreach($categories as $category)
-                                                    <li onclick="selectItem(this)" data-value="{{ $category->id }}">{{ $category->name }}</li>
-                                                    @endforeach
-                                                </ul>
+
+                                        <div class="dropdown2">
+                                            <div class="dropdown-toggle2" onclick="toggleDropdown2()">Select Category ▼
                                             </div>
-                                            <input type="hidden" id="categoryId" name="category_search">
+                                            <ul class="dropdown-menu2" id="dropdownMenu2">
+                                                @foreach ($categories as $category)
+                                                    <li onclick="selectItem(this)" data-value="{{ $category->id }}">
+                                                        {{ $category->name }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <input type="hidden" id="categoryId" name="category_search">
 
                                         <div id="SearchResults" class="custom-search-results">
                                         </div>
-                                            <button type="submit" class="input-group-addon btn-main window-screen-search-btn">
-                                                <img src="{{ asset('images/search.webp') }} " alt="search"
-                                                    class="img">
-                                            </button>
+                                        <button type="submit"
+                                            class="input-group-addon btn-main window-screen-search-btn">
+                                            <img src="{{ asset('images/search.webp') }} " alt="search" class="img">
+                                        </button>
 
                                         <div class="submit-btn-parent">
                                             <button type="submit" class="submit-btn">
@@ -259,7 +266,7 @@
                                              <button class="input-group-addon btn-main">
                                                   <img src="{{ asset('images/search.png') }} " alt="search" class="img-fluid"> </button>
                                            </div> --}}
-                                <div class="card__box_1">
+                                {{-- <div class="card__box_1">
                                     <div class="card__box_">
                                         <img src="{{ asset('images/logo/1.svg') }}" alt="">
                                     </div>
@@ -271,21 +278,21 @@
                                     </div>
                                     <div class="card__box_">
                                         <img src="{{ asset('images/logo/4.svg') }}" alt="">
-                                    </div>
-                                </div>
-
-
+                                    </div> --}}
                             </div>
-                            {{-- <div class="col-lg-6 col-sm-12 col-md-12 banner-img">
+
+
+                        </div>
+                        {{-- <div class="col-lg-6 col-sm-12 col-md-12 banner-img">
                                <img src="{{ asset('images/image001.webp') }}" alt="">
                                </div> --}}
-                        </div>
                     </div>
-
                 </div>
-            </div>
 
+            </div>
         </div>
+
+    </div>
     </div>
     <div class=""
         style="padding:40px 0; position:relative; background-image: url('{{ asset('images/bg-elements.webp') }}');">

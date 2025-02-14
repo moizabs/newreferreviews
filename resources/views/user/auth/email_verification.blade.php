@@ -66,7 +66,7 @@
         <button class="resend-btn" style=" ">
             Resend Email
         </button>
-        <p>Need help? <a href="">Contact Us</a></p>
+        <p>Need help? <a href="{{ url('/contect-us') }}">Contact Us</a></p>
 
     </div>
 </body>
