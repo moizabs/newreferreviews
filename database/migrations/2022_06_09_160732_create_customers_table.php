@@ -23,7 +23,7 @@ class CreateCustomersTable extends Migration
             $table->string('image')->nullable();
             $table->string('phone')->nullable();
             $table->string('status')->default(0)->nullable();  //active = 0  un_active = 1
-            $table->timestamps('email_verified_at')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('verification_token')->nullable();
             $table->timestamps();
         });

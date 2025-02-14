@@ -113,6 +113,7 @@ Route::group(['middleware' => ['Customer']], function () {
     Route::post('/user/send-msg', [ChatController::class, 'userSendMsg'])->name('user.send.msg');
 Route::post('user/get_chat', [ChatController::class, 'getUserChat'])->name('user.get.chat');
 });
+
 Route::get('user/register',[UserController::class, 'registerView'])->name('user.register');
 Route::post('user/registerSubmit',[UserController::class, 'registerSubmit'])->name('user.register.submit');
 Route::get('user/login',[UserController::class, 'loginView'])->name('user.login');
@@ -121,6 +122,7 @@ Route::get('user/forget_password',[UserForgetController::class, 'userForgetView'
 Route::get('verify-email/{token}', [UserController::class, 'verifyEmail'])->name('verify.email');
 Route::get('email-verification', [UserController::class, 'email_verification_view'])->name('email.verification');
 Route::post('resend-verification/{customer}', [UserController::class, 'resendVerification'])->name('resend.verification');
+
 
 Route::get('register/confirm', function () {
     return view('auth.register-confirm');
@@ -145,7 +147,7 @@ Route::group(['middleware' => ['Business']], function () {
     Route::post('/company-change-button-name',[CompanyController::class,'changeBtnName'])->name('change.button.name');
     
     Route::get('/business/view_chat_page', [ChatController::class, 'businessChatInterface'])->name('business.view.chat');
-Route::post('business/get_chat', [ChatController::class, 'getBusinessChat'])->name('business.get.chat');
+    Route::post('business/get_chat', [ChatController::class, 'getBusinessChat'])->name('business.get.chat');
      Route::post('/company/send-msg', [ChatController::class, 'businessSendMsg'])->name('business.send.msg');
 
 
@@ -155,6 +157,9 @@ Route::post('company/loginSubmit',[CompanyController::class, 'loginSubmit'])->na
 Route::get('company/register',[CompanyController::class, 'registerView'])->name('company.register');
 Route::post('company/registerSubmit',[CompanyController::class, 'registerSubmit'])->name('company.register.submit');
 Route::get('company/forget_password',[ForgetPassword::class, 'companyForgetView'])->name('company.forgetPassword');
+Route::get('company/verify-email/{token}', [CompanyController::class, 'verifyEmail'])->name('company.verify.email');
+Route::get('company/email-verification', [CompanyController::class, 'email_verification_view'])->name('company.email.verification');
+Route::post('company/resend-verification/{companyId}', [CompanyController::class, 'resendVerification'])->name('company.resend.verification');
 
 // HomeController
 Route::get('/',[HomeController::class,'index'])->name('home');
@@ -209,7 +214,6 @@ Route::get('/company_search_by_cate_id/{cate_id}', [HomeController::class, 'Comp
 Route::post('/get-companies-cate-id', [HomeController::class, 'GetCompByCateId'])->name('get.comp.byId');
 Route::get('/search_by_comp', [HomeController::class, 'SearchByComp']);
 Route::get('/search_by_cate', [HomeController::class, 'SearchByCate']);
-
 
 // Find City State Postal
 Route::post('/getValue', [HomeController::class, 'getValue'])->name('getvalue');

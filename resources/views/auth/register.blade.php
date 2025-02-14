@@ -37,7 +37,7 @@
         /*    -moz-box-shadow: 0 1px 0 0 red;*/
         /*    box-shadow: 0 1px 0 0 red;*/
         /*    content: "";*/
-        margin: 0 auto;
+        /* margin: 0 auto; */
 
         /* this centers the line to the full width specified */
         /*    position: absolute;*/
@@ -83,15 +83,15 @@
 
 <body>
     <img class="wave" src="{{ asset('images/wave.png') }}">
-        @include('layouts.navbar')
-        <div class="parent">
+    @include('layouts.navbar')
+    <div class="parent">
 
-            <div class="first-child">
-                <img style="margin: 50px auto" src="{{ asset('images/phone.png') }}">
-            </div>
+        <div class="first-child">
+            <img style="margin: 50px auto" src="{{ asset('images/phone.png') }}">
+        </div>
 
-            <div class="second-child" >
-                {{-- <div class="card-header border-bottom-0 bg-transparent">
+        <div class="second-child">
+            {{-- <div class="card-header border-bottom-0 bg-transparent">
                     <ul class="nav nav-tabs justify-content-center pt-4" id="pills-tab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active text-primary Register" id="pills-login-tab" data-toggle="pill"
@@ -113,278 +113,275 @@
                     </ul>
                 </div> --}}
 
-                <div  class="">
-                    <div  class="tab-content" id="pills-tabContent">
-                        {{-- Register Form --}}
+            <div class="">
+                <div class="tab-content" id="pills-tabContent">
+                    {{-- Register Form --}}
 
-                        <div class="second-child-main-div"  class="tab-pane fade show active"  id="pills-login" role="tabpanel"
-                            aria-labelledby="pills-login-tab">
-                            @if (Session::has('success'))
-                                <div class="alert alert-success text-center">
-                                    {{ Session::get('success') }}
+                    <div class="second-child-main-div" class="tab-pane fade show active" id="pills-login"
+                        role="tabpanel" aria-labelledby="pills-login-tab">
+                        @if (Session::has('success'))
+                            <div class="alert alert-success text-center">
+                                {{ Session::get('success') }}
+                            </div>
+                        @endif
+                        <form action="{{ route('company.register.submit') }}" method="POST">
+                            @csrf
+                            <h2 class="text-center search-text">Company Registration</h2>
+                            <div class="">
+                                <div class="form-group ">
+                                    <label for="c-name">Company Name</label>
+                                    <input type="text" class="form-control @error('comp_name') is-invalid @enderror"
+                                        name="comp_name" id="c-name" placeholder="Enter company name">
+                                    @error('comp_name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
                                 </div>
-                            @endif
-                            <form action="{{ route('company.register.submit') }}" method="POST">
-                                @csrf
-                                <h2 class="text-center search-text">Company Registration</h2>
-                                <div class="">
-                                    <div class="form-group ">
-                                        <label for="c-name">Company Name</label>
-                                        <input type="text"
-                                            class="form-control @error('comp_name') is-invalid @enderror"
-                                            name="comp_name" id="c-name" placeholder="Enter company name">
-                                        @error('comp_name')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-
-                                    </div>
-                                    <!--                 <div class="col-sm-6 form-group">-->
-                                    <!--                    <label for="mc-num">Category</label>-->
-                                    <!--                    <select name="category_id" class="form-control"  id="category_id">-->
-                                    <!--                        @foreach ($categories as $category)
+                                <!--                 <div class="col-sm-6 form-group">-->
+                                <!--                    <label for="mc-num">Category</label>-->
+                                <!--                    <select name="category_id" class="form-control"  id="category_id">-->
+                                <!--                        @foreach ($categories as $category)
 -->
-                                    <!--                            <option value="{{ $category->id }}">{{ $category->name }}</option>-->
-                                    <!--
+                                <!--                            <option value="{{ $category->id }}">{{ $category->name }}</option>-->
+                                <!--
 @endforeach-->
 
-                                    <!--                    </select>-->
-                                    <!--                        </div>-->
-                                    <!--                <div class="col-sm-6 form-group Automotives">-->
-                                    <!--                    <label for="mc-num">Mc Number</label>-->
-                                    <!--                    <input type="text" class="form-control @error('comp_mc_num') is-invalid @enderror" name="comp_mc_num" id="mc-num"-->
-                                    <!--                        placeholder="Enter mc number">-->
-                                    <!--                        @error('comp_mc_num')
+                                <!--                    </select>-->
+                                <!--                        </div>-->
+                                <!--                <div class="col-sm-6 form-group Automotives">-->
+                                <!--                    <label for="mc-num">Mc Number</label>-->
+                                <!--                    <input type="text" class="form-control @error('comp_mc_num') is-invalid @enderror" name="comp_mc_num" id="mc-num"-->
+                                <!--                        placeholder="Enter mc number">-->
+                                <!--                        @error('comp_mc_num')
     -->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--
+                                    <!--    <span class="invalid-feedback" role="alert">-->
+                                    <!--        <strong>{{ $message }}</strong>-->
+                                    <!--    </span>-->
+                                    <!--
 @enderror-->
-                                    <!--                </div>-->
-                                    <!--                <div class="col-sm-6 form-group Automotives">-->
-                                    <!--                    <label for="mc-num">Dot Number</label>-->
-                                    <!--                    <input type="text" class="form-control @error('dot_num') is-invalid @enderror" name="dot_num" id="dot_num"-->
-                                    <!--                        placeholder="Enter Dot number">-->
-                                    <!--                        @error('dot_num')
+                                <!--                </div>-->
+                                <!--                <div class="col-sm-6 form-group Automotives">-->
+                                <!--                    <label for="mc-num">Dot Number</label>-->
+                                <!--                    <input type="text" class="form-control @error('dot_num') is-invalid @enderror" name="dot_num" id="dot_num"-->
+                                <!--                        placeholder="Enter Dot number">-->
+                                <!--                        @error('dot_num')
     -->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--
+                                    <!--    <span class="invalid-feedback" role="alert">-->
+                                    <!--        <strong>{{ $message }}</strong>-->
+                                    <!--    </span>-->
+                                    <!--
 @enderror-->
-                                    <!--                </div>-->
+                                <!--                </div>-->
 
-                                    <div class="form-group">
-                                        <label for="name">User Name</label>
-                                        <input type="text" class="form-control" name="name" id="name"
-                                            placeholder="Enter Your Name">
-                                    </div>
-                                    <!-- <div class="col-sm-6 form-group">-->
-                                    <!--    <label for="dname">Desired User Name</label>-->
-                                    <!--    <input type="text" name="comp_desire_name" class="form-control" id="dname"-->
-                                    <!--        placeholder="Enter desire username">-->
-                                    <!--</div>-->
-                                    <!--                <div class="col-sm-6 form-group">-->
-                                    <!--                    <label for="address-2">City</label>-->
-                                    <!--                    <input type="address" class="form-control @error('comp_city') is-invalid @enderror" name="comp_city" id="city" placeholder="City Name.">-->
-                                    <!--                     @error('comp_city')
+                                <div class="form-group">
+                                    <label for="name">User Name</label>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                        placeholder="Enter Your Name">
+                                </div>
+                                <!-- <div class="col-sm-6 form-group">-->
+                                <!--    <label for="dname">Desired User Name</label>-->
+                                <!--    <input type="text" name="comp_desire_name" class="form-control" id="dname"-->
+                                <!--        placeholder="Enter desire username">-->
+                                <!--</div>-->
+                                <!--                <div class="col-sm-6 form-group">-->
+                                <!--                    <label for="address-2">City</label>-->
+                                <!--                    <input type="address" class="form-control @error('comp_city') is-invalid @enderror" name="comp_city" id="city" placeholder="City Name.">-->
+                                <!--                     @error('comp_city')
     -->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--
+                                    <!--    <span class="invalid-feedback" role="alert">-->
+                                    <!--        <strong>{{ $message }}</strong>-->
+                                    <!--    </span>-->
+                                    <!--
 @enderror-->
-                                    <!--                </div>-->
-                                    <!--<div class="col-sm-6 form-group">-->
-                                    <!--    <label for="State">State</label>-->
-                                    <!--    <input type="address" class="form-control @error('comp_state') is-invalid @enderror" name="comp_state" id="state"-->
-                                    <!--        placeholder="Enter your state name.">-->
-                                    <!--          @error('comp_state')
+                                <!--                </div>-->
+                                <!--<div class="col-sm-6 form-group">-->
+                                <!--    <label for="State">State</label>-->
+                                <!--    <input type="address" class="form-control @error('comp_state') is-invalid @enderror" name="comp_state" id="state"-->
+                                <!--        placeholder="Enter your state name.">-->
+                                <!--          @error('comp_state')
     -->
-                                        <!--            <span class="invalid-feedback" role="alert">-->
-                                        <!--            <strong>{{ $message }}</strong>-->
-                                        <!--            </span>-->
-                                        <!--
+                                    <!--            <span class="invalid-feedback" role="alert">-->
+                                    <!--            <strong>{{ $message }}</strong>-->
+                                    <!--            </span>-->
+                                    <!--
 @enderror-->
-                                    <!--</div>-->
-                                    <!-- <div class="col-sm-12 form-group">-->
-                                    <!--    <label for="address">Address</label>-->
-                                    <!--    <input type="text" class="form-control @error('comp-address') is-invalid @enderror" name="comp_address" id="address"-->
-                                    <!--        placeholder="Enter Address.">-->
-                                    <!--          @error('comp-address')
+                                <!--</div>-->
+                                <!-- <div class="col-sm-12 form-group">-->
+                                <!--    <label for="address">Address</label>-->
+                                <!--    <input type="text" class="form-control @error('comp-address') is-invalid @enderror" name="comp_address" id="address"-->
+                                <!--        placeholder="Enter Address.">-->
+                                <!--          @error('comp-address')
     -->
-                                        <!--        <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--        </span>-->
-                                        <!--
+                                    <!--        <span class="invalid-feedback" role="alert">-->
+                                    <!--        <strong>{{ $message }}</strong>-->
+                                    <!--        </span>-->
+                                    <!--
 @enderror-->
-                                    <!--</div>-->
+                                <!--</div>-->
 
 
-                                    <div class="form-group ">
-                                        <label for="email">Email</label>
-                                        <input type="email"
-                                            class="form-control @error('comp_email') is-invalid @enderror"
-                                            name="comp_email" id="email" placeholder="Enter your email.">
-                                        @error('comp_email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group ">
-                                        <label for="password">Password</label>
-                                        <input type="Password" name="password"
-                                            class="form-control @error('password') is-invalid @enderror"
-                                            id="password" placeholder="Enter your password.">
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                    <!--                <div class="col-sm-6 form-group">-->
-                                    <!--                    <label for="website">Website</label>-->
-                                    <!--                    <input type="text" name="website" class="form-control @error('website') is-invalid @enderror" id="website"-->
-                                    <!--                        placeholder="Enter your Website.">-->
-                                    <!--                          @error('website')
+                                <div class="form-group ">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control @error('comp_email') is-invalid @enderror"
+                                        name="comp_email" id="email" placeholder="Enter your email.">
+                                    @error('comp_email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div class="form-group ">
+                                    <label for="password">Password</label>
+                                    <input type="Password" name="comp_password"
+                                        class="form-control @error('password') is-invalid @enderror" id="password"
+                                        placeholder="Enter your password.">
+                                    @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <!--                <div class="col-sm-6 form-group">-->
+                                <!--                    <label for="website">Website</label>-->
+                                <!--                    <input type="text" name="website" class="form-control @error('website') is-invalid @enderror" id="website"-->
+                                <!--                        placeholder="Enter your Website.">-->
+                                <!--                          @error('website')
     -->
-                                        <!--    <span class="invalid-feedback" role="alert">-->
-                                        <!--        <strong>{{ $message }}</strong>-->
-                                        <!--    </span>-->
-                                        <!--
+                                    <!--    <span class="invalid-feedback" role="alert">-->
+                                    <!--        <strong>{{ $message }}</strong>-->
+                                    <!--    </span>-->
+                                    <!--
 @enderror-->
-                                    <!--                </div>-->
-                                    <div class="form-group ">
-                                        <label for="text">Phone Number</label>
-                                        <input type="text" name="pnumber"
-                                            class="dphone form-control @error('pnumber') is-invalid @enderror"
-                                            id="pnumber" placeholder="Enter your Phone Number." maxlength="12">
-                                        @error('pnumber')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
+                                <!--                </div>-->
+                                <div class="form-group ">
+                                    <label for="text">Phone Number</label>
+                                    <input type="text" name="pnumber"
+                                        class="dphone form-control @error('pnumber') is-invalid @enderror"
+                                        id="pnumber" placeholder="Enter your Phone Number." maxlength="12">
+                                    @error('pnumber')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
 
-                                    {{-- <div class="col-sm-12 form-group">
+                                {{-- <div class="col-sm-12 form-group">
                                     <label>About Us(Brief Description)</label>
                                     <textarea name="comp_message" class="form-control" id="comp_message" rows="3"></textarea>
                                 </div> --}}
-                                    {{--                                 
+                                {{--                                 
                             <div class="col-sm-12 form-group">
                                 <label for="image">Image</label>
                                 <input type="file" name="image" class="form-control" id="image" placeholder="" ></input>
                             </div> --}}
-                                    
 
 
-                            <div class=" " style="text-align: center">
-                                <button type="submit" class="fl-header-phone "
-                                    href="">Submit</button>
-                            </div>
+
+                                <div class=" " style="text-align: center">
+                                    <button type="submit" class="fl-header-phone " href="">Submit</button>
                                 </div>
-                            </form>
-                        </div>
-
-
-
-                        {{-- Register Form User --}}
-                        <!--    <div class="tab-pane fade" id="pills-register" role="tabpanel"-->
-                        <!--        aria-labelledby="pills-register-tab">-->
-                        <!--         @if (Session::has('success'))
--->
-                        <!--        <div class="alert alert-success text-center">-->
-                        <!--        {{ Session::get('success') }}-->
-                        <!--        </div>-->
-                        <!--
-@endif   -->
-                        <!--        <form action="{{ route('user.register.submit') }}" method="POST" enctype="multipart/form-data" novalidate>-->
-                        <!--            @csrf-->
-                        <!--             <h2 class="text-center search-text">Customer Registration</h2>-->
-                        <!--            <div class="row jumbotron">-->
-                        <!--                <div class="col-sm-6 form-group">-->
-                        <!--                    <label for="c-name">First Name</label>-->
-                        <!--                    <input type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" id="cname"-->
-                        <!--                        placeholder="Enter Your First name" >-->
-                        <!--                         @error('first_name')
-    -->
-                            <!--    <span class="invalid-feedback" role="alert">-->
-                            <!--        <strong>{{ $message }}</strong>-->
-                            <!--    </span>-->
-                            <!--
-@enderror-->
-                        <!--                </div>-->
-                        <!--                <div class="col-sm-6 form-group">-->
-                        <!--                    <label for="mc-num">Last Name</label>-->
-                        <!--                    <input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="lnum"-->
-                        <!--                        placeholder="Enter Your Last Name" >-->
-                        <!--                                @error('last_name')
-    -->
-                            <!--    <span class="invalid-feedback" role="alert">-->
-                            <!--        <strong>{{ $message }}</strong>-->
-                            <!--    </span>-->
-                            <!--
-@enderror-->
-                        <!--                </div>-->
-                        <!--                <div class="col-sm-6 form-group">-->
-                        <!--                    <label for="email">Email</label>-->
-                        <!--                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"-->
-                        <!--                        placeholder="Enter your email." >-->
-                        <!--                                    @error('email')
-    -->
-                            <!--    <span class="invalid-feedback" role="alert">-->
-                            <!--        <strong>{{ $message }}</strong>-->
-                            <!--    </span>-->
-                            <!--
-@enderror-->
-                        <!--                </div>-->
-                        <!--                <div class="col-sm-6 form-group">-->
-                        <!--                    <label for="name">Password</label>-->
-                        <!--                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password"-->
-                        <!--                        placeholder="Enter Your Password">-->
-                        <!--                         @error('password')
-    -->
-                            <!--                        <span class="invalid-feedback" role="alert">-->
-                            <!--                            <strong>{{ $message }}</strong>-->
-                            <!--                        </span>-->
-                            <!--
-@enderror-->
-
-                        <!--                </div>-->
-                        <!--                <div class="col-sm-6 form-group">-->
-                        <!--                    <label for="phone">Phone Number</label>-->
-                        <!--                    <input type="text" class="form-control dphone" name="phone" id="phone"-->
-                        <!--                        placeholder="Enter Phone Number" maxlength="12">-->
-
-
-                        <!--                </div>-->
-                        <!--                <div class="col-sm-6 form-group">-->
-                        <!--                    <label for="upload_imgs">Upload Your Image</label>-->
-                        <!--                    <input type="file" class="" name="image" id="upload_imgs">-->
-                        <!--                     <div class="quote-imgs-thumbs quote-imgs-thumbs--hidden" id="img_preview" aria-live="polite"></div>-->
-                        <!--                </div>-->
-
-
-
-                        <!--                <div class="col-sm-12 form-group mb-0">-->
-
-
-                        <!--                    <div class="fl-header-phone-contain float-right">-->
-                        <!--                        <button type="submit" class="fl-header-phone " href="">Submit</button>-->
-                        <!--                    </div>-->
-                        <!--                </div>-->
-
-                        <!--            </div>-->
-                        <!--        </form>-->
-                        <!--    </div>-->
+                            </div>
+                        </form>
                     </div>
+
+
+
+                    {{-- Register Form User --}}
+                    <!--    <div class="tab-pane fade" id="pills-register" role="tabpanel"-->
+                    <!--        aria-labelledby="pills-register-tab">-->
+                    <!--         @if (Session::has('success'))
+-->
+                    <!--        <div class="alert alert-success text-center">-->
+                    <!--        {{ Session::get('success') }}-->
+                    <!--        </div>-->
+                    <!--
+@endif   -->
+                    <!--        <form action="{{ route('user.register.submit') }}" method="POST" enctype="multipart/form-data" novalidate>-->
+                    <!--            @csrf-->
+                    <!--             <h2 class="text-center search-text">Customer Registration</h2>-->
+                    <!--            <div class="row jumbotron">-->
+                    <!--                <div class="col-sm-6 form-group">-->
+                    <!--                    <label for="c-name">First Name</label>-->
+                    <!--                    <input type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" id="cname"-->
+                    <!--                        placeholder="Enter Your First name" >-->
+                    <!--                         @error('first_name')
+    -->
+                        <!--    <span class="invalid-feedback" role="alert">-->
+                        <!--        <strong>{{ $message }}</strong>-->
+                        <!--    </span>-->
+                        <!--
+@enderror-->
+                    <!--                </div>-->
+                    <!--                <div class="col-sm-6 form-group">-->
+                    <!--                    <label for="mc-num">Last Name</label>-->
+                    <!--                    <input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" id="lnum"-->
+                    <!--                        placeholder="Enter Your Last Name" >-->
+                    <!--                                @error('last_name')
+    -->
+                        <!--    <span class="invalid-feedback" role="alert">-->
+                        <!--        <strong>{{ $message }}</strong>-->
+                        <!--    </span>-->
+                        <!--
+@enderror-->
+                    <!--                </div>-->
+                    <!--                <div class="col-sm-6 form-group">-->
+                    <!--                    <label for="email">Email</label>-->
+                    <!--                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"-->
+                    <!--                        placeholder="Enter your email." >-->
+                    <!--                                    @error('email')
+    -->
+                        <!--    <span class="invalid-feedback" role="alert">-->
+                        <!--        <strong>{{ $message }}</strong>-->
+                        <!--    </span>-->
+                        <!--
+@enderror-->
+                    <!--                </div>-->
+                    <!--                <div class="col-sm-6 form-group">-->
+                    <!--                    <label for="name">Password</label>-->
+                    <!--                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password"-->
+                    <!--                        placeholder="Enter Your Password">-->
+                    <!--                         @error('password')
+    -->
+                        <!--                        <span class="invalid-feedback" role="alert">-->
+                        <!--                            <strong>{{ $message }}</strong>-->
+                        <!--                        </span>-->
+                        <!--
+@enderror-->
+
+                    <!--                </div>-->
+                    <!--                <div class="col-sm-6 form-group">-->
+                    <!--                    <label for="phone">Phone Number</label>-->
+                    <!--                    <input type="text" class="form-control dphone" name="phone" id="phone"-->
+                    <!--                        placeholder="Enter Phone Number" maxlength="12">-->
+
+
+                    <!--                </div>-->
+                    <!--                <div class="col-sm-6 form-group">-->
+                    <!--                    <label for="upload_imgs">Upload Your Image</label>-->
+                    <!--                    <input type="file" class="" name="image" id="upload_imgs">-->
+                    <!--                     <div class="quote-imgs-thumbs quote-imgs-thumbs--hidden" id="img_preview" aria-live="polite"></div>-->
+                    <!--                </div>-->
+
+
+
+                    <!--                <div class="col-sm-12 form-group mb-0">-->
+
+
+                    <!--                    <div class="fl-header-phone-contain float-right">-->
+                    <!--                        <button type="submit" class="fl-header-phone " href="">Submit</button>-->
+                    <!--                    </div>-->
+                    <!--                </div>-->
+
+                    <!--            </div>-->
+                    <!--        </form>-->
+                    <!--    </div>-->
                 </div>
             </div>
-
         </div>
+
+    </div>
     </div>
 
 
