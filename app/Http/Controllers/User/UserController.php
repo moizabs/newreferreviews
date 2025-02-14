@@ -17,19 +17,21 @@ use App\Mail\EmailVerification;
 class UserController extends Controller
 {
 
-    public function email_verification_view(){
+    public function email_verification_view()
+    {
         return view('user.auth.email_verification');
     }
 
-    public function index(){
-        if(Session::get('user')) { 
-            
+    public function index()
+    {
+        if (Session::get('user')) {
+
             return view('home');
         } else {
             return redirect()->route('user.login');
         }
     }
-    
+
     // public function registerView()
     // {
     //     $categories = '';
@@ -38,113 +40,113 @@ class UserController extends Controller
     //     exit();
     //     return view('user.auth.register',compact('categories'));
     // }
-    
-    public function riviewHistory(){
-        if(Session::get('user')) { 
+
+    public function riviewHistory()
+    {
+        if (Session::get('user')) {
             $user_id = Session::get('user')['id'];
-            
-            $user_Reviews = Review::where('user_id',$user_id)
-            ->with('get_business')
-            ->latest()
-            ->paginate(15);
-            
+
+            $user_Reviews = Review::where('user_id', $user_id)
+                ->with('get_business')
+                ->latest()
+                ->paginate(15);
+
             // echo '<pre>';
             // print_r($users_review->toArray());
             // echo '</pre>';
-            
-            return view('user.user_reviews',compact('user_Reviews'));
-            
+
+            return view('user.user_reviews', compact('user_Reviews'));
         } else {
             return redirect()->route('user.login');
         }
     }
 
+    public function userProfile(Request $request)
+    {
+        if (Session::get('user')) {
 
-    public function userProfile(Request $request){
-        if(Session::get('user')) { 
-            
             $user = Session::get('user');
-    
-            return view('user.userProfile',compact('user'));
+
+            return view('user.userProfile', compact('user'));
         } else {
             return redirect()->route('user.login');
         }
     }
 
-    public function userEditProfile(Request $request){
-        if(Session::get('user')) { 
-            
-            if(Session::has('user')){
-                    $user = Session::get('user');
-                    
-                  
-                    $customer = Customer::find($user->id );
-        
-                    $customer->first_name = $request->first_name;
-                    $customer->last_name = $request->last_name;
-                    $customer->phone= $request->phone;
-                    $customer->save();
-                    $userSession = Session::put('user', $customer);
-                    $user = Session::get('user');
-                    return back()->with('success','Profile Updated');
-                
-                 return back();
+    public function userEditProfile(Request $request)
+    {
+        if (Session::get('user')) {
+
+            if (Session::has('user')) {
+                $user = Session::get('user');
+                $customer = Customer::find($user->id);
+                $customer->first_name = $request->first_name;
+                $customer->last_name = $request->last_name;
+                $customer->phone = $request->phone;
+                $customer->save();
+                $userSession = Session::put('user', $customer);
+                $user = Session::get('user');
+                return back()->with('success', 'Profile Updated');
+                return back();
             }
         } else {
             return redirect()->route('user.login');
         }
-        
-    }
-    
-    public function addImage(Request $request){
-    
-            $user = Session::get('user');
-            $customer = Customer::find($user->id );
-            
-            if($request->hasFile('image'))
-            {
-                    $destination = 'public/userProfile';
-                    $img = $request->file('image');
-                    $filename = time().'-'.$img->getClientOriginalName();
-                    $path = $img->storeAs($destination,$filename);
-                    $customer->image =  $filename;
-                    $customer->save();
-            }
-            Session::put('user',$customer);
-            Session::get('user');
-                
-            return back()->with('success','Profile Updated');
-                      
     }
 
+    public function addImage(Request $request)
+    {
+        $user = Session::get('user');
+        $customer = Customer::find($user->id);
 
-    public function registerView(){
+        if ($request->hasFile('image')) {
+            $destination = 'public/userProfile';
+            $img = $request->file('image');
+            $filename = time() . '-' . $img->getClientOriginalName();
+            $path = $img->storeAs($destination, $filename);
+            $customer->image =  $filename;
+            $customer->save();
+        }
+        Session::put('user', $customer);
+        Session::get('user');
+
+        return back()->with('success', 'Profile Updated');
+    }
+
+    public function registerView()
+    {
         return view('user.auth.register');
     }
 
-    public function loginView(){
+    public function loginView()
+    {
         return view('user.login');
     }
 
-    public function loginSubmit(Request $request){
-        
+    public function loginSubmit(Request $request)
+    {
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required'
-        ]);        
+        ]);
 
-        $user = Customer::where('email','=', $request->email)->first();
+        $user = Customer::where('email', '=', $request->email)->first();
 
-        if ($user && $user->email_verified_at) {
+        if ($user) {
             if (Hash::check($request->password, $user->password)) {
-                session()->put('user', $user);
-                return redirect()->route('home');
+                if($user->email_verified_at){
+                    session()->put('user', $user);
+                    return redirect()->route('home');
+                }else{
+                    Mail::to($user->email)->send(new EmailVerification($user));
+                    return view('user.auth.email_verification', ['customer_email' => $user->email, 'customer_id' => $user->id,]);
+                    // return redirect()->route('user.register')->with('error', 'Please verify your email before proceeding.');
+                }
             } else {
                 return back()->with('fail', 'Password not Matches');
             }
         } else {
-            return redirect()->route('user.register')->with('error', 'Please verify your email before proceeding.');
-            // return back()->with('fail', 'Invalid Email');
+            return back()->with('fail', 'Invalid Email');
         }
     }
 
@@ -169,10 +171,26 @@ class UserController extends Controller
             'verification_token' => Str::random(60),
         ]);
 
-        Mail::to($user->email)->send(new EmailVerification($user));
+        if ($user) {
+            Mail::to($user->email)->send(new EmailVerification($user));
+            return view('user.auth.email_verification', ['customer_email' => $user->email, 'customer_id' => $user->id,]);
+        }
 
-        return redirect()->route('user.login')
-                         ->with('success', 'You have successfully registered. Please check your email to verify your account.');
+    }
+
+    public function resendVerification($customerId)
+    {
+        $customer = Customer::findOrFail($customerId);
+
+        if ($customer->email_verified_at) {
+            return redirect()->route('user.login')->with('message', 'Your email is already verified.');
+        }
+
+        $customer->verification_token = Str::random(60);
+        $customer->save();
+
+        Mail::to($customer->email)->send(new EmailVerification($customer));
+        return view('user.auth.email_verification', ['customer_email' => $customer->email, 'customer_id' => $customer->id,])->with('message', 'A new verification email has been sent. Please check your inbox.');
     }
 
     public function verifyEmail($token)
@@ -181,7 +199,7 @@ class UserController extends Controller
 
         if (!$user) {
             return redirect()->route('user.register')
-                             ->with('error', 'Invalid token!');
+                ->with('error', 'Invalid token!');
         }
 
         $user->email_verified_at = now();
@@ -189,18 +207,17 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->route('user.login')
-                         ->with('success', 'Email successfully verified!');
+            ->with('success', 'Email successfully verified!');
     }
 
-    public function userLogout() {
-        if(Session::has('user')) {
-            
-        Session::flush();
-        return redirect()->route('user.login');
-        }
-        else{
-             return redirect()->route('user.login');
-        }
+    public function userLogout()
+    {
+        if (Session::has('user')) {
 
+            Session::flush();
+            return redirect()->route('user.login');
+        } else {
+            return redirect()->route('user.login');
+        }
     }
 }

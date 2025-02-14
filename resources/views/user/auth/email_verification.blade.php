@@ -54,21 +54,22 @@
 
 <body style=" background-color: #d3ebf8">
     <div class="container-m">
-
             <img style="width: 200px" src="{{ asset('images/logo.png') }}" alt="">
-
         <h1 class="">Please Verify Your Email</h1>
-        <p>You're almost there! we sent an email to <span style="font-weight: 600">abstest@gmail.com</span></p>
+        <p>You're almost there! we sent an email to <span style="font-weight: 600"> @if(isset($customer_email)) {{ $customer_email }} @endif </span></p>
         
         <p>Just Click on the link in the email to complete your signup. if you dont see it, you may need to <span
                 style="font-weight: 600">check your spam </span> folder</p>
         <p>Still can't find the email?</p>
-        <button class="resend-btn" style=" ">
-            Resend Email
-        </button>
+        <form action="{{ route('resend.verification', $customer_id) }}" method="POST">
+            @csrf
+            <button class="resend-btn" type="submit">Resend Email</button>
+        </form>
         <p>Need help? <a href="">Contact Us</a></p>
-
+        <br/>
+        @if(session('message'))
+            <p style="color: blue">{{ session('message') }}</p>
+        @endif
     </div>
 </body>
-
 </html>

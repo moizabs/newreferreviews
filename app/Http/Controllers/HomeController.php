@@ -17,10 +17,10 @@ use App\Models\Zipcode;
 use App\Models\ContactUs;
 use App\Models\ChatController;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use App\Mail\ContactUs as EmailContectUs;
-use Mail;
-use DB;
 
 class HomeController extends Controller
 {
@@ -35,10 +35,10 @@ class HomeController extends Controller
         
             $company_name = $request->company_search;
             $company_location = $request->location_search;
-            $company_category = $request->category_search;
+            $company_category = $request->category_search_dropdown;
                         
             $companies = Business::with('avg','get_category')
-            ->where('status',1)
+            // ->where('status',1)
             ->where(function ($q) use ($company_name){
                 if($company_name){
                 $q
@@ -53,7 +53,11 @@ class HomeController extends Controller
             })
             ->where(function ($q3) use ($company_location){
                 if($company_location){
-                    $q3->orWhere('city','LIKE',"%". $company_location ."%");
+                    $q3
+                    ->orWhere('city','LIKE',"%". $company_location ."%")
+                    ->orWhere('state','LIKE',"%". $company_location ."%")
+                    ->orWhere('state','LIKE',"%". $company_location ."%")
+                    ->orWhere('address','LIKE',"%". $company_location ."%");
                 }
             })
             ->orderBy('created_at','ASC')
@@ -69,10 +73,7 @@ class HomeController extends Controller
             // echo '<pre>';
             // print_r($company_test);
             // exit();
-            return view('all_companies',compact('companies'));
-            
-        
-       
+            return view('all_companies', compact('companies'));
     }
     
     public function index(Request $request){
@@ -138,8 +139,6 @@ class HomeController extends Controller
             ->limit(10)
             ->get()
             ->toArray();
-
-
 
         // $latestReview = collect(Review::with('get_customer')->latest()->get()->toArray());
         $latestReview = Review::with('get_customer','get_business')

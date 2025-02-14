@@ -120,6 +120,7 @@ Route::post('user/loginSubmit',[UserController::class, 'loginSubmit'])->name('us
 Route::get('user/forget_password',[UserForgetController::class, 'userForgetView'])->name('user.forgetPassword');
 Route::get('verify-email/{token}', [UserController::class, 'verifyEmail'])->name('verify.email');
 Route::get('email-verification', [UserController::class, 'email_verification_view'])->name('email.verification');
+Route::post('resend-verification/{customer}', [UserController::class, 'resendVerification'])->name('resend.verification');
 
 Route::get('register/confirm', function () {
     return view('auth.register-confirm');

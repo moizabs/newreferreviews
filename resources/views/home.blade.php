@@ -205,42 +205,44 @@
                     <div class="row">
                         <div class="col-12 flex_ banner">
                             <div class=" col-sm-12  col-md-12 ospadop banner-text">
-                                <h5 class="text-center">Every review has a significant experience that goes with it.</h5>
+                                <h5 class="text-center">Every review has a significant experience that goes with it.
+                                </h5>
                                 <p style="color: #5c5757; margin-bottom: 10px; font-weight: 600; text-align:center;">
                                     Get the finest services based on reviews.</p>
                                 <form action="{{ route('all.companies') }}" method="GET">
                                     @csrf
                                     <div class="form-parent">
                                         <div class="childs">
-                                            <input type="text" name="company_search"
-                                                class="childs-inp" id="search"
-                                                placeholder="Find by Company name here.." aria-describedby="basic-addon2">
+                                            <input type="text" name="company_search" class="childs-inp"
+                                                id="search" placeholder="Find by Company name here.."
+                                                aria-describedby="basic-addon2">
                                         </div>
                                         <div class="childs">
-                                            <input type="text" name="location_search"
-                                                class="childs-inp"
+                                            <input type="text" name="location_search" class="childs-inp"
                                                 placeholder="Find by Location here.." aria-describedby="basic-addon2">
                                         </div>
                                         {{-- <input type="text" name="search"
                                             class=" typeahead form-control search-input" id="search"
                                             placeholder="Find Category here.." aria-describedby="basic-addon2"> --}}
-                                            
-                                            <div class="dropdown2">
-                                                <div class="dropdown-toggle2" onclick="toggleDropdown2()">Select Category ▼</div>
-                                                <ul class="dropdown-menu2" id="dropdownMenu2">
-                                                    @foreach($categories as $category)
-                                                    <li onclick="selectItem(this)" data-value="{{ $category->id }}">{{ $category->name }}</li>
-                                                    @endforeach
-                                                </ul>
+
+                                        <div class="dropdown2">
+                                            <div class="dropdown-toggle2" onclick="toggleDropdown2()">Select Category ▼
                                             </div>
-                                            <input type="hidden" id="categoryId" name="category_search">
+                                            <ul class="dropdown-menu2" id="dropdownMenu2">
+                                                @foreach ($categories as $category_all)
+                                                    <li onclick="selectItem(this)" data-value="{{ $category_all->id }}">
+                                                        {{ $category_all->name }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        <input type="hidden" id="categoryId_dropdown" name="category_search_dropdown">
 
                                         <div id="SearchResults" class="custom-search-results">
                                         </div>
-                                            <button type="submit" class="input-group-addon btn-main window-screen-search-btn">
-                                                <img src="{{ asset('images/search.webp') }} " alt="search"
-                                                    class="img">
-                                            </button>
+                                        <button type="submit"
+                                            class="input-group-addon btn-main window-screen-search-btn">
+                                            <img src="{{ asset('images/search.webp') }} " alt="search" class="img">
+                                        </button>
 
                                         <div class="submit-btn-parent">
                                             <button type="submit" class="submit-btn">
@@ -318,7 +320,7 @@
                     @foreach ($category1 as $category)
                         <div class="item2">
                             <div class="card__box cate_info mb-3">
-                                <a href = '/company_search_by_cate_id/{{ $category->id }}' class="hvr-pop">
+                                <a href="{{ url('company_search_by_cate_id/'. $category->id) }}" class="hvr-pop">
                                     <div>
                                         <img src="{{ asset('storage/categoryImage/' . $category->image) }}"
                                             alt="" class="caroselimage"
@@ -674,7 +676,7 @@
             document.querySelector(".dropdown-toggle2").innerText = element.innerText + " ▼";
             dropdownMenu2.classList.remove("show2");
             const selectedCategoryId = element.getAttribute('data-value');
-            document.getElementById('categoryId').value = selectedCategoryId;
+            document.getElementById('categoryId_dropdown').value = selectedCategoryId;
         }
 
         // Close dropdown if clicked outside

@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Session;
-
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class Business extends Model
 {
@@ -20,7 +19,6 @@ class Business extends Model
     protected $table = 'businesses';
 
     protected $fillable = [
-
         'name',
         'comp_name',
         'mc_num',
@@ -41,7 +39,6 @@ class Business extends Model
         'status',
         'type',
         'button_text'
-
     ];
 
     /**
@@ -89,26 +86,20 @@ class Business extends Model
     public function businessdetail_reqprice()
     {
         return $this->hasMany(RequestPrice::class,'comp_id','id');
-
     }
-
 
     public function avg()
     {
         return $this->hasMany(Review::class,'comp_id','id')
         ->select(DB::raw('AVG(rating) as totalRating'),'comp_id')
         ->groupBy('comp_id');
-
     }
-    
-    
-   
+        
     public function count_review()
     {
         return $this->hasMany(Review::class,'comp_id','id')
         ->select(DB::raw('COUNT(review) as totalReview'),'comp_id')
         ->groupBy('comp_id');
-
     }
     
      public function get_images()
@@ -121,8 +112,6 @@ class Business extends Model
         return $this->hasMany(Review::class,'comp_id','id')
         ->select(DB::raw('COUNT(review) as totalReview'),'comp_id')
         ->groupBy('comp_id');
-
-
     }
     
     public function last_msg(){
@@ -148,6 +137,5 @@ class Business extends Model
         return $this->hasMany(Chat::class,'business_id','id')
         ->orderBy('created_at','DESC');
     }
-    
     
 }
