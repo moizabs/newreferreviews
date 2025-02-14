@@ -65,7 +65,7 @@
             @csrf
             <button class="resend-btn" type="submit">Resend Email</button>
         </form>
-        <p>Need help? <a href="">Contact Us</a></p>
+        <p>Need help? <a href="{{ route('contact.us') }}">Contact Us</a></p>
         <br/>
         @if(session('message'))
             <p style="color: blue">{{ session('message') }}</p>

@@ -240,7 +240,7 @@
                                                 @endforeach
                                             </ul>
                                         </div>
-                                        <input type="hidden" id="categoryId" name="category_search">
+                                        <input type="hidden" id="categoryId_dropdown" name="category_search_dropdown">
 
                                         <div id="SearchResults" class="custom-search-results">
                                         </div>
