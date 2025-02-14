@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-radius: 5px;
+   
     height: 60px;
 }
 
@@ -32,6 +32,9 @@
     border: 1px solid #ccc;
     list-style: none;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    height: 200px;
+    overflow-y: scroll;
+
 }
 
 .dropdown-menu2 li {
@@ -70,11 +73,14 @@
     display: none;
 }
 @media (max-width: 780px) {
+    .dropdown-toggle2{
+        border-radius: 5px;
+    }
     .form-parent {
         padding-top: 30px;
         border: none;
         display: block;
-        background-color: #d3ebf8;
+        /* background-color: #d3ebf8; */
     }
     .form-parent .childs{
         margin-bottom: 4px;
