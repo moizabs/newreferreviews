@@ -6,6 +6,9 @@
     <title>Refer Reviews</title>
     @include('layouts.head')
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         .left__btn,
         .right__btn {
@@ -325,7 +328,7 @@
                     @foreach ($category1 as $category)
                         <div class="item2">
                             <div class="card__box cate_info mb-3">
-                                <a href="{{ url('company_search_by_cate_id/'. $category->id) }}" class="hvr-pop">
+                                <a href="{{ url('company_search_by_cate_id/' . $category->id) }}" class="hvr-pop">
                                     <div>
                                         <img src="{{ asset('storage/categoryImage/' . $category->image) }}"
                                             alt="" class="caroselimage"
@@ -365,6 +368,214 @@
         </div>
     </div>
     </div>
+
+<div style="width: 100% ; background-color: #d3ebf8" >
+    <div class="main-div">
+
+        <div>
+            <div>
+                <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
+
+                <h3><span style="font-size: medium">From</span> jamshaid</h3>
+
+                <div class="text-warning" style="  font-size:25px">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h3><span style="font-size: medium">To </span>Moiz</h3>
+
+                <div class="content-box" >
+                    <div  style="padding: 4px 0px ; font-weight: 700;  color:#000;">
+                        <div >Ship A1</div>
+                        {{-- <div>14-feb-2025</div> --}}
+                    </div>
+                    <p class="content" style="">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id sed ullam
+                        sit, repellat magni.
+                    </p>
+                </div>
+                <div style="text-align: end; width:95%">14-feb-2025</div>
+
+            </div>
+        </div>
+
+
+        <div>
+            <div>
+                <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
+
+                <h3 ><span style="font-size: medium">From</span> Jamshaid</h3>
+
+                <div class="text-warning" style="  font-size:25px">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h3><span style="font-size: medium">To </span>Moiz</h3>
+
+                <div class="content-box">
+                    <div style="padding: 4px 0px ; font-weight: 700; color:#000;">
+                        <div>Day Dispatch</div>
+                    </div>
+                    <p class="content" style="">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id sed ullam
+                        sit, repellat magni.
+                    </p>
+                </div>
+
+                        <div style="text-align: end; width:95%">14-feb-2025</div>
+
+            </div>
+        </div>
+
+
+        <div>
+            <div>
+                <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
+
+                <h3><span style="font-size: medium">From</span> Jamshaid</h3>
+
+                <div class="text-warning" style="  font-size:25px">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h3><span style="font-size: medium">To </span>Moiz</h3>
+
+                <div class="content-box">
+                    <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
+                        <div> All State To State Auto Transport</div>
+                        {{-- <div>14-feb-2025</div> --}}
+                    </div>
+                    <p class="content" style="">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id sed ullam
+                        sit, repellat magni.
+                    </p>
+                </div>
+                <div style="text-align: end; width:95%">14-feb-2025</div>
+
+            </div>
+        </div>
+
+
+        <div>
+            <div>
+                <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
+
+                <h3><span style="font-size: medium">From</span> Jamshaid</h3>
+
+                <div class="text-warning" style="  font-size:25px">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h3><span style="font-size: medium">To </span>Moiz</h3>
+
+                <div class="content-box">
+                    <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
+                        <div> All State To State Auto Transport</div>
+                        {{-- <div>14-feb-2025</div> --}}
+                    </div>
+                    <p class="content" style="">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                    </p>
+                </div>
+                <div style="text-align: end; width:95%">14-feb-2025</div>
+
+            </div>
+        </div>
+
+
+        <div>
+            <div>
+                <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
+
+                <h3><span style="font-size: medium">From</span> Jamshaid</h3>
+
+                <div class="text-warning" style="  font-size:25px">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h3><span style="font-size: medium">To </span>Moiz</h3>
+
+                <div class="content-box">
+                    <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
+                        <div> All State To State Auto Transport</div>
+                        {{-- <div>14-feb-2025</div> --}}
+                    </div>
+                    <p class="content" style="">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id sed ullam
+                        sit, repellat magni.
+                    </p>
+                </div>
+                <div style="text-align: end; width:95%">14-feb-2025</div>
+
+            </div>
+        </div>
+
+
+        <div>
+            <div>
+                <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
+
+                <h3><span style="font-size: medium">From</span> Jamshaid</h3>
+
+                <div class="text-warning" style="  font-size:25px">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h3><span style="font-size: medium">To </span>Moiz</h3>
+
+                <div class="content-box">
+                    <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
+                        <div> All State To State Auto Transport</div>
+                        {{-- <div>14-feb-2025</div> --}}
+                    </div>
+                    <p class="content" style="">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id sed ullam
+                        sit, repellat magni.
+                    </p>
+                </div>
+                <div style="text-align: end; width:95%">14-feb-2025</div>
+
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+
     <div class="vertical__padding">
         <div class="container">
             <h5 class="text-sm-h5 search-text pt-5">Read All the Recent User Reviews</h5>

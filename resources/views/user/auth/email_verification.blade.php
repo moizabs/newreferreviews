@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Email Varification</title>
     <link rel="stylesheet" href="{{ asset('css/email-verification.css') }}">
 </head>
 <style>
@@ -58,7 +58,7 @@
         <h1 class="">Please Verify Your Email</h1>
         <p>You're almost there! we sent an email to <span style="font-weight: 600"> @if(isset($customer_email)) {{ $customer_email }} @endif </span></p>
         
-        <p>Just Click on the link in the email to complete your signup. if you dont see it, you may need to <span
+        <p>Just Click on the link in the email to complete your signup.If you dont see it, you may need to <span
                 style="font-weight: 600">check your spam </span> folder</p>
         <p>Still can't find the email?</p>
         <form action="{{ route('resend.verification', $customer_id) }}" method="POST">
