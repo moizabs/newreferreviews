@@ -20,7 +20,10 @@ use Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use App\Mail\BusinessMailVerification;
 
 class CompanyController extends Controller
 {
@@ -140,58 +143,87 @@ class CompanyController extends Controller
 
     public function registerSubmit(Request $request)
     {
-       
         $validator = Validator::make($request->all(), [
-          'comp_name' => 'required|unique:businesses,comp_name',
-        //   'comp_mc_num' => 'required|unique:businesses,mc_num',
-          'comp_email' => 'required|unique:businesses,email',
-          'password' => 'required|min:8',
-          
-          
-      ]);
-      if($validator->passes())
-      {
-          
-        $company = new Business;
-        $company->name = $request->name;
-        $company->comp_name = $request->comp_name;
-        // $company->mc_num = $request->comp_mc_num;
-        $company->email = $request->comp_email;
-        $company->password = Hash::make($request->password);
-        // $company->city = $request->comp_city;
-        // $company->state = $request->comp_state;
-        // $company->desire_name = $request->comp_desire_name;
-        // $company->message = $request->comp_message;
-        // $company->address = $request->comp_address;
-        // $company->website = $request->website;
-        $company->phone = $request->pnumber;
-        // $company->dot_num = $request->dot_num;
-        // $company->category_id = $request->category_id;
+            'comp_name' => 'required|string|min:3||max:255|unique:businesses,comp_name',
+            'name' => 'required|string|min:3|max:255|unique:businesses,name',
+            'comp_email' => 'required|email|unique:businesses,email',
+            'comp_password' => 'required|string|min:8|regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/',
+            // 'pnumber' => 'required|regex:/^\+?[0-9]{1,4}?[0-9]{7,10}$/',
+        ]);
 
+    //     $validator = Validator::make($request->all(), [
+    //       'comp_name' => 'required|unique:businesses,comp_name',
+    //       'user_name' => 'required|unique:businesses,comp_name',
+    //       'comp_email' => 'required|unique:businesses,email',
+    //       'password' => 'required|min:8',
+    //   ]);
+
+    if ($validator->fails()) {
+        return back()->withErrors($validator)->withInput();
+    }
+    
+    $company = Business::create([
+        'name' => $request->name,
+        'comp_name' => $request->comp_name,
+        'email' => $request->comp_email,
+        'password' => Hash::make($request->comp_password),
+        'phone' => $request->pnumber,
+        'verification_token' => Str::random(60),
+    ]);
+
+        // if($request->hasFile('image'))
+        // {
+        //     $destination = 'public/companyLogo';
+        //     $img = $request->file('image');
+        //     $filename = time().'-'.$img->getClientOriginalName();
+        //     $path = $img->storeAs($destination,$filename);
+        //     $company->image =  $filename;
+        // }
         
+        if ($company) {
+            Mail::to($company->email)->send(new BusinessMailVerification($company));
+            return view('auth.email_verification', ['company_email' => $company->email, 'company_id' => $company->id,]);
+        }
+        // return redirect()
+        //     ->route('company.login')
+        //     ->with('success','You have successfully registered, Login to access your profile');
+    }
 
-        if($request->hasFile('image'))
-        {
-            $destination = 'public/companyLogo';
-            $img = $request->file('image');
-            $filename = time().'-'.$img->getClientOriginalName();
-            $path = $img->storeAs($destination,$filename);
-            $company->image =  $filename;
+    public function verifyEmail($token)
+    {
+        $company = Business::where('verification_token', $token)->first();
+
+        if (!$company) {
+            return redirect()->route('company.register')
+                ->with('error', 'Invalid token!');
         }
 
+        if($company->verification_token && $company->verification_token == NULL){
+            $company->email_verified_at = now();
+            $company->verification_token = null;
+            $company->save();
 
+            return redirect()->route('company.login')
+            ->with('success', 'Email successfully verified!');
+        }else{
+            return redirect()->route('company.register')
+            ->with('error', 'Email verification failed!');
+        }
+    }
+
+    public function resendVerification($companyId)
+    {
+        $company = Business::findOrFail($companyId);
+
+        if ($company->email_verified_at) {
+            return redirect()->route('company.login')->with('message', 'Your email is already verified.');
+        }
+
+        $company->verification_token = Str::random(60);
         $company->save();
 
-
-        return redirect()
-            ->route('company.login')
-            ->with('success','You have successfully registered, Login to access your profile');
-      }
-      else{
-          return back()->withErrors($validator)->withInput();
-      }
-
-
+        Mail::to($company->email)->send(new BusinessMailVerification($company));
+        return view('auth.email_verification', ['company_email' => $company->email, 'company_id' => $company->id,])->with('message', 'A new verification email has been sent. Please check your inbox.');
     }
 
     public function updateSubmit(Request $request,$id )

@@ -38,7 +38,9 @@ class Business extends Model
         'website',
         'status',
         'type',
-        'button_text'
+        'button_text',
+        'email_verified_at',
+        'verification_token'
     ];
 
     /**

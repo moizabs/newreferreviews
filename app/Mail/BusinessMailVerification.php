@@ -2,26 +2,26 @@
 
 namespace App\Mail;
 
-use App\Models\Customer;
+use App\Models\Business;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class EmailVerification extends Mailable
+class BusinessMailVerification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $user;
+    public $company;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Customer $user)
+    public function __construct(Business $business)
     {
-        $this->user = $user;
+        $this->company = $business;
     }
 
     /**
@@ -31,11 +31,11 @@ class EmailVerification extends Mailable
      */
     public function build()
     {
-        return $this->subject('Verify Your Email Address')
-                    ->view('emails.verify')
+        return $this->subject('Verify Your Business Email Address')
+                    ->view('emails.company_email_verify')
                     ->with([
-                        'name' => $this->user->first_name,
-                        'token' => $this->user->verification_token,
+                        'name' => $this->company->name,
+                        'token' => $this->company->verification_token,
                     ]);
     }
 }
