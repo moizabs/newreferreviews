@@ -369,14 +369,15 @@
     </div>
     </div>
 
-<div style="width: 100% ; background-color: #d3ebf8" >
+<div style="width: 100% ; background-color: #d3ebf8 ; padding-top: 30px" >
+    <h1 class="recent-reviews-heading" >Read All the Recent User Reviews</h1>
     <div class="main-div">
 
         <div>
             <div>
                 <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
 
-                <h3><span style="font-size: medium">From</span> jamshaid</h3>
+                <h3><span style="font-size: medium">From </span>Jamshaid</h3>
 
                 <div class="text-warning" style="  font-size:25px">
                     <i class="fa-solid fa-star"></i>
@@ -399,7 +400,10 @@
                         sit, repellat magni.
                     </p>
                 </div>
-                <div style="text-align: end; width:95%">14-feb-2025</div>
+                <div class="card-date-box" >
+                  <div>14-feb-2025</div>  
+                <a href=""><i class="fa-solid fa-share"></i></a>
+                </div>
 
             </div>
         </div>
@@ -409,7 +413,7 @@
             <div>
                 <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
 
-                <h3 ><span style="font-size: medium">From</span> Jamshaid</h3>
+                <h3 ><span style="font-size: medium">From </span>Jamshaid</h3>
 
                 <div class="text-warning" style="  font-size:25px">
                     <i class="fa-solid fa-star"></i>
@@ -433,7 +437,10 @@
                     </p>
                 </div>
 
-                        <div style="text-align: end; width:95%">14-feb-2025</div>
+                <div class="card-date-box" >
+                    <div>14-feb-2025</div>  
+                  <a href=""><i class="fa-solid fa-share"></i></a>
+                  </div>
 
             </div>
         </div>
@@ -443,7 +450,7 @@
             <div>
                 <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
 
-                <h3><span style="font-size: medium">From</span> Jamshaid</h3>
+                <h3><span style="font-size: medium">From </span>Jamshaid</h3>
 
                 <div class="text-warning" style="  font-size:25px">
                     <i class="fa-solid fa-star"></i>
@@ -466,7 +473,10 @@
                         sit, repellat magni.
                     </p>
                 </div>
-                <div style="text-align: end; width:95%">14-feb-2025</div>
+                <div class="card-date-box" >
+                    <div>14-feb-2025</div>  
+                  <a href=""><i class="fa-solid fa-share"></i></a>
+                  </div>
 
             </div>
         </div>
@@ -476,7 +486,7 @@
             <div>
                 <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
 
-                <h3><span style="font-size: medium">From</span> Jamshaid</h3>
+                <h3><span style="font-size: medium">From </span>Jamshaid</h3>
 
                 <div class="text-warning" style="  font-size:25px">
                     <i class="fa-solid fa-star"></i>
@@ -497,8 +507,10 @@
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
                     </p>
                 </div>
-                <div style="text-align: end; width:95%">14-feb-2025</div>
-
+                <div class="card-date-box" >
+                    <div>14-feb-2025</div>  
+                  <a href=""><i class="fa-solid fa-share"></i></a>
+                  </div>
             </div>
         </div>
 
@@ -507,42 +519,7 @@
             <div>
                 <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
 
-                <h3><span style="font-size: medium">From</span> Jamshaid</h3>
-
-                <div class="text-warning" style="  font-size:25px">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                </div>
-
-                <h3><span style="font-size: medium">To </span>Moiz</h3>
-
-                <div class="content-box">
-                    <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
-                        <div> All State To State Auto Transport</div>
-                        {{-- <div>14-feb-2025</div> --}}
-                    </div>
-                    <p class="content" style="">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                        voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id sed ullam
-                        sit, repellat magni.
-                    </p>
-                </div>
-                <div style="text-align: end; width:95%">14-feb-2025</div>
-
-            </div>
-        </div>
-
-
-        <div>
-            <div>
-                <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
-
-                <h3><span style="font-size: medium">From</span> Jamshaid</h3>
+                <h3><span style="font-size: medium">From </span>Jamshaid</h3>
 
                 <div class="text-warning" style="  font-size:25px">
                     <i class="fa-solid fa-star"></i>
@@ -567,7 +544,48 @@
                         sit, repellat magni.
                     </p>
                 </div>
-                <div style="text-align: end; width:95%">14-feb-2025</div>
+                <div class="card-date-box" >
+                    <div>14-feb-2025</div>  
+                  <a href=""><i class="fa-solid fa-share"></i></a>
+                  </div>
+
+            </div>
+        </div>
+
+
+        <div>
+            <div>
+                <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
+
+                <h3><span style="font-size: medium">From </span>Jamshaid</h3>
+
+                <div class="text-warning" style="  font-size:25px">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+
+                <h3><span style="font-size: medium">To </span>Moiz</h3>
+
+                <div class="content-box">
+                    <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
+                        <div> All State To State Auto Transport</div>
+                        {{-- <div>14-feb-2025</div> --}}
+                    </div>
+                    <p class="content" style="">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
+                        voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id sed ullam
+                        sit, repellat magni.
+                    </p>
+                </div>
+                <div class="card-date-box" >
+                    <div>14-feb-2025</div>  
+                  <a href=""><i class="fa-solid fa-share"></i></a>
+                  </div>
 
             </div>
         </div>
@@ -576,7 +594,7 @@
     </div>
 </div>
 
-    <div class="vertical__padding">
+    {{-- <div class="vertical__padding">
         <div class="container">
             <h5 class="text-sm-h5 search-text pt-5">Read All the Recent User Reviews</h5>
             <div class="row">
@@ -641,7 +659,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="review-section" style=" background-image: url('{{ asset('images/bg-elements.webp') }}');">
         <div class="about_us container">
             <div class="row">

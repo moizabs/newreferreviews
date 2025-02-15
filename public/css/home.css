@@ -3,7 +3,7 @@
     width: 100%;
     position: relative;
     /* display: flex; */
-    
+
 }
 
 .dropdown-toggle2 {
@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
+
     height: 60px;
 }
 
@@ -49,67 +49,80 @@
 .show2 {
     display: block;
 }
-.form-parent{
+
+.form-parent {
     border: 2px solid #213770;
     border-radius: 10px;
     display: flex;
 }
-.form-parent .childs{
+
+.form-parent .childs {
     height: 60px;
     width: 100%;
     display: flex;
 }
-.form-parent .childs .childs-inp{
+
+.form-parent .childs .childs-inp {
     height: 60px;
     padding-left: 10px;
     width: 100%;
     display: flex;
     align-items: center;
 }
-.form-parent .window-screen-search-btn .img{
+
+.form-parent .window-screen-search-btn .img {
     width: 70px;
 }
-.submit-btn-parent{
+
+.submit-btn-parent {
     display: none;
 }
+
 @media (max-width: 780px) {
-    .dropdown-toggle2{
+    .dropdown-toggle2 {
         border-radius: 5px;
     }
+
     .form-parent {
         padding-top: 30px;
         border: none;
         display: block;
         /* background-color: #d3ebf8; */
     }
-    .form-parent .childs{
+
+    .form-parent .childs {
         margin-bottom: 4px;
     }
-    .form-parent .childs .childs-inp{
+
+    .form-parent .childs .childs-inp {
         border-radius: 5px;
     }
-    .window-screen-search-btn{
+
+    .window-screen-search-btn {
         display: none;
     }
-    .submit-btn-parent{
-      width: 100%;
+
+    .submit-btn-parent {
+        width: 100%;
     }
-    .submit-btn{
+
+    .submit-btn {
         display: flex;
-        justify-content:center ;
+        justify-content: center;
         background-color: #213770;
         width: 200px;
         border: 2px solid #1d2e57;
         border-radius: 5px;
         margin: 20px auto;
-        padding:10px 5px ;
+        padding: 10px 5px;
         color: #fff;
-        
+
     }
-    .submit-btn-parent{
+
+    .submit-btn-parent {
         display: flex;
     }
-    
+
 }
 
 /* review cards styling */
@@ -120,11 +133,12 @@
     display: grid;
     grid-template-columns: auto auto auto;
     background-color: #d3ebf8;
-    padding: 8% 10px 10px 10px;
+    padding: 5% 10px 10px 10px;
     gap: 20px;
-    
+
 }
-.main-div > div {
+
+.main-div>div {
     /* background-color: #f1f1f1;
     border: 1px solid black; */
     padding: 10px 10px 30px 10px;
@@ -137,22 +151,24 @@
     /* border: 3px solid #73AD21; */
 }
 
-.main-div > div > div {
+.main-div>div>div {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #fff;
     padding-top: 17%;
     padding-bottom: 6px;
 }
 
-.image-parent{
+.image-parent {
     position: absolute;
-     /* bottom: 300px; */
-     top: -10%;
-     /* right: 35%;  */
+    /* bottom: 300px; */
+    top: -10%;
+    /* right: 35%;  */
     /* width: 200px;
     height: 100px; */
-    left: 50%; /* Move right by 50% of the parent's width */
-    transform: translateX(-50%); /* Adjust for the div's own width */
+    left: 50%;
+    /* Move right by 50% of the parent's width */
+    transform: translateX(-50%);
+    /* Adjust for the div's own width */
     /* transform: translateY(-30%);  */
     border: 4px solid #d3ebf8;
 
@@ -163,14 +179,16 @@
     border-radius: 50%;
     display: flex;
     justify-content: center;
-    align-items: center;    
+    align-items: center;
 }
-.image-parent > img{
+
+.image-parent>img {
     width: 90px;
     height: 90px;
     border-radius: 50%;
 }
-.content-box{
+
+.content-box {
     background-color: #d3ebf8;
     /* box-shadow: 0 4px 8px 0 #768fce, 0 6px 20px 0 #768fce; */
     border-radius: 5px;
@@ -179,39 +197,62 @@
     padding: 0 10px;
     color: rgb(95, 94, 94)
 }
-.content{
+
+.content {
     height: 150px;
-    overflow-y: scroll
+    overflow-y: auto;
 }
 
- /* width
 ::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  Track
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
-  }
-   
-  Handle
-  ::-webkit-scrollbar-thumb {
-    background: #213770; 
-    border-radius: 10px;
-  } */
-  
- 
-@media (max-width: 1130px) {
-   .main-div{
-    grid-template-columns: auto auto ;
-    gap: 50px;
-   }
+    width: 10px;
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #213770;
+    border-radius: 10px;
+}
+
+.recent-reviews-heading {
+    color: #00539c;
+}
+
+.card-date-box {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    width: 95%;
+    margin: auto;
+}
+
+.card-date-box > a > i {
+    color: #213770;
+    font-size: 25px;
+    text-decoration: none;
+}
+.card-date-box > a > i:hover {
+    color: #00539c;
+    font-size: 25px;
+}
+
+@media (max-width: 1130px) {
+    .main-div {
+        grid-template-columns: auto auto;
+        gap: 50px;
+    }
+}
+
 @media (max-width: 770px) {
-   .main-div{
-    grid-template-columns: auto ;
-    gap: 50px;
-    padding: 15% 10px 10px 10px;
-   }
+    .main-div {
+        grid-template-columns: auto;
+        gap: 50px;
+        padding: 15% 10px 10px 10px;
+    }
 }
