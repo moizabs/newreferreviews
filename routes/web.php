@@ -163,7 +163,7 @@ Route::post('company/resend-verification/{companyId}', [CompanyController::class
 
 // HomeController
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('/all-companies',[HomeController::class,'allCompanies'])->name('all.companies');
+Route::get('/all-companies',[HomeController::class,'allCompaniesFilter'])->name('all.companies');
 Route::get('company/profile/{id}',[HomeController::class,'companyProfile'])->name('company.show');
 Route::post('company/profile/searchSS',[HomeController::class,'companyProfile2'])->name('company.show.search');
 Route::get('company/profile/review/{id}',[HomeController::class,'companyReviewProfile'])->name('company.show.review.page');
