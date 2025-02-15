@@ -75,5 +75,7 @@
 </body>
 </html>
 @else
-    {{ url('company/login') }}
+<script>
+      window.location.href = '{{ url('/company/register') }}';  // Replace '/dashboard' with your desired URL
+  </script>
 @endif
