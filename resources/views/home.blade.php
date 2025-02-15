@@ -373,235 +373,49 @@
         <h1 class="recent-reviews-heading">Read All the Recent User Reviews</h1>
         <div class="main-div">
 
+            @foreach($latestReview as $review)
             <div>
                 <div>
-                    <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
-
-                    <h3><span style="font-size: medium">From </span>Jamshaid</h3>
-
+                    @if ($review['get_customer']['image'] != '')
+                        <div class="image-parent"><img src="{{ asset('storage/userProfile/' . $review['get_customer']['image']) }}" alt=""></div>       
+                    @else
+                        <div class="image-parent"><img src="{{ asset('images/profile-image.webp') }}" alt=""></div>
+                    @endif                    
+                    <h3><span style="font-size: medium">From </span>{{ isset($review['get_customer']['first_name']) ? $review['get_customer']['first_name'] : '' }}</h3>
                     <div class="text-warning" style="  font-size:25px">
+                        {{-- @for ($i = 1; $i <= $review['rating']; $i++)
                         <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+                        @endfor
+
+                        @for ($j = $review['rating'] + 1; $j <= 5; $j++)
+                            <i class="fa-solid fa-star"></i>
+                        @endfor --}}
+                        @for ($i = 1; $i <= $review['rating']; $i++)
+                            <i class="fa-solid fa-star text-yellow-500"></i>
+                        @endfor
+
+                        @for ($j = $review['rating'] + 1; $j <= 5; $j++)
+                            <i class="fa-regular fa-star text-gray-400"></i>
+                        @endfor
                     </div>
-
-                    <h3><span style="font-size: medium">To </span>Moiz</h3>
-
+                    <h3><span style="font-size: medium">To </span>{{ isset($review['get_business']['comp_name']) ? $review['get_business']['comp_name'] : '' }}</h3>
                     <div class="content-box">
                         <div style="padding: 4px 0px ; font-weight: 700;  color:#000;">
-                            <div>Ship A1</div>
+                            <div>{{ $review->title }}</div>
                             {{-- <div>14-feb-2025</div> --}}
                         </div>
                         <p class="scrollingText"  style="">
-                            
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis
-                                optio,
-                                voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum
-                                id sed ullam
-                                voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum
-                                id sed ullam
-                                voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum
-                                id sed ullam
-                                sit, repellat magni.
+                            {{-- {{ \Illuminate\Support\Str::words($review['review'], 25) }} --}}
+                            {{ $review->review }}
                         </p>
                     </div>
                     <div class="card-date-box">
-                        <div>14-feb-2025</div>
-                        <a href=""><i class="fa-solid fa-share"></i></a>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div>
-                <div>
-                    <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
-
-                    <h3><span style="font-size: medium">From </span>Jamshaid</h3>
-
-                    <div class="text-warning"  style="  font-size:25px">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-
-                    <h3><span style="font-size: medium">To </span>Moiz</h3>
-
-                    <div class="content-box">
-                        <div style="padding: 4px 0px ; font-weight: 700; color:#000;">
-                            <div>Day Dispatch</div>
-                        </div>
-                        <p  class="scrollingText" style="">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                            voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id
-                            sed ullam
-                            sit, repellat magni.
-                        </p>
-                    </div>
-
-                    <div class="card-date-box">
-                        <div>14-feb-2025</div>
-                        <a href=""><i class="fa-solid fa-share"></i></a>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div>
-                <div>
-                    <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
-
-                    <h3><span style="font-size: medium">From </span>Jamshaid</h3>
-
-                    <div class="text-warning" style="  font-size:25px">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-
-                    <h3><span style="font-size: medium">To </span>Moiz</h3>
-
-                    <div class="content-box">
-                        <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
-                            <div> All State To State Auto Transport</div>
-                            {{-- <div>14-feb-2025</div> --}}
-                        </div>
-                        <p  class="scrollingText" style="">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                            voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id
-                            sed ullam
-                            sit, repellat magni.
-                        </p>
-                    </div>
-                    <div class="card-date-box">
-                        <div>14-feb-2025</div>
-                        <a href=""><i class="fa-solid fa-share"></i></a>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div>
-                <div>
-                    <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
-
-                    <h3><span style="font-size: medium">From </span>Jamshaid</h3>
-
-                    <div class="text-warning" id="scrollingText" style="  font-size:25px">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-
-                    <h3><span style="font-size: medium">To </span>Moiz</h3>
-
-                    <div class="content-box">
-                        <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
-                            <div> All State To State Auto Transport</div>
-                            {{-- <div>14-feb-2025</div> --}}
-                        </div>
-                        <p  class="scrollingText" style="">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nisi ratione dignissimos quos sunt
-                             excepturi
-                        </p>
-                    </div>
-                    <div class="card-date-box">
-                        <div>14-feb-2025</div>
+                        <div>{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</div>
                         <a href=""><i class="fa-solid fa-share"></i></a>
                     </div>
                 </div>
             </div>
-
-
-            <div>
-                <div>
-                    <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
-
-                    <h3><span style="font-size: medium">From </span>Jamshaid</h3>
-
-                    <div class="text-warning" id="scrollingText" style="  font-size:25px">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-
-                    <h3><span style="font-size: medium">To </span>Moiz</h3>
-
-                    <div class="content-box">
-                        <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
-                            <div> All State To State Auto Transport</div>
-                            {{-- <div>14-feb-2025</div> --}}
-                        </div>
-                        <p  class="scrollingText" style="">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                            voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id
-                            sed ullam
-                            sit, repellat magni.
-                        </p>
-                    </div>
-                    <div class="card-date-box">
-                        <div>14-feb-2025</div>
-                        <a href=""><i class="fa-solid fa-share"></i></a>
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div>
-                <div>
-                    <div class="image-parent"><img src="{{ asset('images/user.jpg') }} " alt=""></div>
-
-                    <h3><span style="font-size: medium">From </span>Jamshaid</h3>
-
-                    <div class="text-warning" style="  font-size:25px">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                    </div>
-
-                    <h3><span style="font-size: medium">To </span>Moiz</h3>
-
-                    <div class="content-box">
-                        <div style="padding: 4px 0px ; font-weight: 700; color:#000; ">
-                            <div> All State To State Auto Transport</div>
-                            {{-- <div>14-feb-2025</div> --}}
-                        </div>
-                        <p  class="scrollingText">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur possimus corporis optio,
-                            voluptates fugiat suscipit velit sunt non qui consequatur odio ratione similique earum id
-                            sed ullam
-                            sit, repellat magni.
-                        </p>
-                    </div>
-                    <div class="card-date-box">
-                        <div>14-feb-2025</div>
-                        <a href=""><i class="fa-solid fa-share"></i></a>
-                    </div>
-
-                </div>
-            </div>
-
+            @endforeach
 
         </div>
     </div>

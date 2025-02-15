@@ -97,7 +97,7 @@ class HomeController extends Controller
         $latestReview = Review::with('get_customer','get_business')
             ->where('status',1)
             ->latest()
-            ->paginate(9);
+            ->paginate(6);
         
         $categories = Category::all();
         $count = Category::count();
