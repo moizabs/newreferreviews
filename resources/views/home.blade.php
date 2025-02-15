@@ -384,10 +384,10 @@
                             <div class="image-parent"><img src="{{ asset('images/profile-image.webp') }}"
                                     alt=""></div>
                         @endif
-                        <h3><span style="font-size: medium">From
+                        <h4><span style="font-size: medium">From
                             </span>{{ isset($review['get_customer']['first_name']) ? $review['get_customer']['first_name'] : '' }}
-                        </h3>
-                        <div class="text-warning" style="  font-size:25px">
+                        </h4>
+                        <div class="text-warning" style=" padding-bottom: 7px ; font-size:23px">
                             {{-- @for ($i = 1; $i <= $review['rating']; $i++)
                         <i class="fa-solid fa-star"></i>
                         @endfor
@@ -403,7 +403,7 @@
                             <i class="fa-regular fa-star text-gray-400"></i>
                         @endfor
                     </div>
-                    <h4><span style="font-size: medium">To </span>{{ isset($review['get_business']['comp_name']) ? $review['get_business']['comp_name'] : '' }}</h4>
+                    <h5><span style="font-size: medium">To </span>{{ \Illuminate\Support\Str::words($review['get_business']['comp_name'] ?? '', 4) }} </h5>
                     <div class="content-box">
                         <div style="padding: 4px 0px ; font-weight: 700;  color:#000;">
                             <div>{{ $review->title }}</div>
@@ -425,7 +425,7 @@
         </div>
     </div>
 
-    <div class="vertical__padding">
+    {{-- <div class="vertical__padding">
         <div class="container">
             <h5 class="text-sm-h5 search-text pt-5">Read All the Recent User Reviews</h5>
             <div class="row">
@@ -490,7 +490,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="review-section" style=" background-image: url('{{ asset('images/bg-elements.webp') }}');">
         <div class="about_us container">
             <div class="row">
