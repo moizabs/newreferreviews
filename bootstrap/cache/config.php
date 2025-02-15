@@ -186,7 +186,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\framework/cache/data',
+        'path' => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -357,12 +357,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\app',
+        'root' => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\app/public',
+        'root' => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -380,7 +380,7 @@
     ),
     'links' => 
     array (
-      'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\public\\storage' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\app/public',
+      'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\public\\storage' => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -415,13 +415,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -472,7 +472,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -538,7 +538,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\resources\\views/vendor/mail',
+        0 => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -649,7 +649,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\framework/sessions',
+    'files' => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -669,9 +669,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\resources\\views',
+      0 => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\resources\\views',
     ),
-    'compiled' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\framework\\views',
+    'compiled' => 'C:\\Users\\abdul.moiz\\Desktop\\referriviews\\storage\\framework\\views',
   ),
   'flare' => 
   array (

@@ -398,7 +398,7 @@
                             <i class="fa-regular fa-star text-gray-400"></i>
                         @endfor
                     </div>
-                    <h3><span style="font-size: medium">To </span>{{ isset($review['get_business']['comp_name']) ? $review['get_business']['comp_name'] : '' }}</h3>
+                    <h4><span style="font-size: medium">To </span>{{ isset($review['get_business']['comp_name']) ? $review['get_business']['comp_name'] : '' }}</h4>
                     <div class="content-box">
                         <div style="padding: 4px 0px ; font-weight: 700;  color:#000;">
                             <div>{{ $review->title }}</div>
