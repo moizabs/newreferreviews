@@ -220,4 +220,7 @@ Route::post('/getValue', [HomeController::class, 'getValue'])->name('getvalue');
 
 // Chat Links
 
+Route::get('mail/design', function () {
+    return view('emails.verify');
+});
 

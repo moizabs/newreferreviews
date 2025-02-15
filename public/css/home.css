@@ -139,16 +139,9 @@
 }
 
 .main-div>div {
-    /* background-color: #f1f1f1;
-    border: 1px solid black; */
     padding: 10px 10px 30px 10px;
-    /* font-size: 30px; */
     text-align: center;
-
     position: relative;
-    /* width: 400px;
-    height: 200px; */
-    /* border: 3px solid #73AD21; */
 }
 
 .main-div>div>div {
@@ -160,18 +153,10 @@
 
 .image-parent {
     position: absolute;
-    /* bottom: 300px; */
     top: -10%;
-    /* right: 35%;  */
-    /* width: 200px;
-    height: 100px; */
     left: 50%;
-    /* Move right by 50% of the parent's width */
     transform: translateX(-50%);
-    /* Adjust for the div's own width */
-    /* transform: translateY(-30%);  */
     border: 4px solid #d3ebf8;
-
     background-color: #1d2e57;
     margin: auto;
     width: 110px;
@@ -190,40 +175,31 @@
 
 .content-box {
     background-color: #d3ebf8;
-    /* box-shadow: 0 4px 8px 0 #768fce, 0 6px 20px 0 #768fce; */
     border-radius: 5px;
     margin: 10px 20px;
     text-align: start;
     padding: 0 10px;
-    color: rgb(95, 94, 94)
+    color: rgb(95, 94, 94);
 }
 
-.content {
+.scrollingText {
     height: 150px;
+    overflow-y: hidden; 
+  position: relative;
+  white-space: normal;
+  display: block;
+  scrollbar-width: none;
+}
+
+.scrollingText::-webkit-scrollbar {
+    display: none;
+  }
+  .scrolling {
     overflow-y: auto;
-}
-
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
-}
-
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-    background: #213770;
-    border-radius: 10px;
-}
-
+  }
 .recent-reviews-heading {
     color: #00539c;
 }
-
 .card-date-box {
     display: flex;
     justify-content: space-between;
@@ -231,7 +207,6 @@
     width: 95%;
     margin: auto;
 }
-
 .card-date-box > a > i {
     color: #213770;
     font-size: 25px;
