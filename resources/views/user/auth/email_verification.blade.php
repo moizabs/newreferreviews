@@ -1,3 +1,4 @@
+@if(isset($customer_email))
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +57,7 @@
     <div class="container-m">
             <img style="width: 200px" src="{{ asset('images/logo.png') }}" alt="">
         <h1 class="">Please Verify Your Email</h1>
-        <p>You're almost there! we sent an email to <span style="font-weight: 600"> @if(isset($customer_email)) {{ $customer_email }} @endif </span></p>
+        <p>You're almost there! we sent an email to <span style="font-weight: 600"> {{ $customer_email }} </span></p>
         
         <p>Just Click on the link in the email to complete your signup.If you dont see it, you may need to <span
                 style="font-weight: 600">check your spam </span> folder</p>
@@ -73,3 +74,9 @@
     </div>
 </body>
 </html>
+@else
+<script>
+      window.location.href = '{{ url('/user/register') }}';  // Replace '/dashboard' with your desired URL
+  </script>
+@endif
+

@@ -189,6 +189,11 @@ class CompanyController extends Controller
         //     ->with('success','You have successfully registered, Login to access your profile');
     }
 
+    public function email_verification_view()
+    {
+        return view('auth.email_verification');
+    }
+
     public function verifyEmail($token)
     {
         $company = Business::where('verification_token', $token)->first();
