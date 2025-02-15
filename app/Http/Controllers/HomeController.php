@@ -111,13 +111,27 @@ class HomeController extends Controller
         return view('home',compact('companies','latestReview','top_rated_companies','categories','category2','category1'));
     }
     
-    public function searchAllCompanies(Request $request){
-        $input = $request->all();
-        $data = Business::where('comp_name','LIKE',"%{$input['query']}%")
-            ->where('name','LIKE',"%{$input['query']}%")
-            ->get();
-        return response()->json($data);
-    }
+    // public function searchAllCompanies(Request $request){
+    //     $input = $request->all();
+    //     $data = Business::where('comp_name','LIKE',"%{$input['query']}%")
+    //         ->where('name','LIKE',"%{$input['query']}%")
+    //         ->get();
+    //     return response()->json($data);
+    // }
+
+    public function searchAllCompanies(Request $request)
+{
+    $query = $request->input('query');
+
+    $data = Business::where(function ($q) use ($query) {
+            $q->where('comp_name', 'LIKE', "%{$query}%")
+              ->orWhere('name', 'LIKE', "%{$query}%");
+        })
+        ->limit(10) // Limit results for efficiency
+        ->get(['comp_name', 'id']); // Fetch only necessary fields
+
+    return response()->json($data);
+}
         
     public function searchCompanies(Request $request){
         $companies = Business::with('avg','get_category')->withAvg('avg','rating')

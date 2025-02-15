@@ -373,48 +373,55 @@
         <h1 class="recent-reviews-heading">Read All the Recent User Reviews</h1>
         <div class="main-div">
 
-            @foreach($latestReview as $review)
-            <div>
+            @foreach ($latestReview as $review)
                 <div>
-                    @if ($review['get_customer']['image'] != '')
-                        <div class="image-parent"><img src="{{ asset('storage/userProfile/' . $review['get_customer']['image']) }}" alt=""></div>       
-                    @else
-                        <div class="image-parent"><img src="{{ asset('images/profile-image.webp') }}" alt=""></div>
-                    @endif                    
-                    <h3><span style="font-size: medium">From </span>{{ isset($review['get_customer']['first_name']) ? $review['get_customer']['first_name'] : '' }}</h3>
-                    <div class="text-warning" style="  font-size:25px">
-                        {{-- @for ($i = 1; $i <= $review['rating']; $i++)
+                    <div>
+                        @if ($review['get_customer']['image'] != '')
+                            <div class="image-parent"><img
+                                    src="{{ asset('storage/userProfile/' . $review['get_customer']['image']) }}"
+                                    alt=""></div>
+                        @else
+                            <div class="image-parent"><img src="{{ asset('images/profile-image.webp') }}"
+                                    alt=""></div>
+                        @endif
+                        <h3><span style="font-size: medium">From
+                            </span>{{ isset($review['get_customer']['first_name']) ? $review['get_customer']['first_name'] : '' }}
+                        </h3>
+                        <div class="text-warning" style="  font-size:25px">
+                            {{-- @for ($i = 1; $i <= $review['rating']; $i++)
                         <i class="fa-solid fa-star"></i>
                         @endfor
 
                         @for ($j = $review['rating'] + 1; $j <= 5; $j++)
                             <i class="fa-solid fa-star"></i>
                         @endfor --}}
-                        @for ($i = 1; $i <= $review['rating']; $i++)
-                            <i class="fa-solid fa-star text-yellow-500"></i>
-                        @endfor
+                            @for ($i = 1; $i <= $review['rating']; $i++)
+                                <i class="fa-solid fa-star text-yellow-500"></i>
+                            @endfor
 
-                        @for ($j = $review['rating'] + 1; $j <= 5; $j++)
-                            <i class="fa-regular fa-star text-gray-400"></i>
-                        @endfor
-                    </div>
-                    <h3><span style="font-size: medium">To </span>{{ isset($review['get_business']['comp_name']) ? $review['get_business']['comp_name'] : '' }}</h3>
-                    <div class="content-box">
-                        <div style="padding: 4px 0px ; font-weight: 700;  color:#000;">
-                            <div>{{ $review->title }}</div>
-                            {{-- <div>14-feb-2025</div> --}}
+                            @for ($j = $review['rating'] + 1; $j <= 5; $j++)
+                                <i class="fa-regular fa-star text-gray-400"></i>
+                            @endfor
                         </div>
-                        <p class="scrollingText"  style="">
-                            {{-- {{ \Illuminate\Support\Str::words($review['review'], 25) }} --}}
-                            {{ $review->review }}
-                        </p>
-                    </div>
-                    <div class="card-date-box">
-                        <div>{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</div>
-                        <a href=""><i class="fa-solid fa-share"></i></a>
+                        <h3><span style="font-size: medium">To
+                            </span>{{ isset($review['get_business']['comp_name']) ? $review['get_business']['comp_name'] : '' }}
+                        </h3>
+                        <div class="content-box">
+                            <div style="padding: 4px 0px ; font-weight: 700;  color:#000;">
+                                <div>{{ $review->title }}</div>
+                                {{-- <div>14-feb-2025</div> --}}
+                            </div>
+                            <p class="scrollingText" style="">
+                                {{-- {{ \Illuminate\Support\Str::words($review['review'], 25) }} --}}
+                                {{ $review->review }}
+                            </p>
+                        </div>
+                        <div class="card-date-box">
+                            <div>{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</div>
+                            <a href=""><i class="fa-solid fa-share"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endforeach
 
         </div>
@@ -631,15 +638,37 @@
     <script defer>
         var path_company_name = "{{ route('searchAllCompanies') }}";
         $(document).ready(function() {
+            // $('#search').typeahead({
+            //     source: function(query, process) {
+            //         return $.get(path_company_name, {
+            //             query: query
+            //         }, function(data) {
+            //             return process(data);
+            //         });
+            //     }
+            // });
+            
             $('#search').typeahead({
+                minLength: 2,
+                highlight: true,
                 source: function(query, process) {
-                    return $.get(path_company_name, {
-                        query: query
-                    }, function(data) {
-                        return process(data);
+                    $.ajax({
+                        url: "{{ route('searchAllCompanies') }}",
+                        data: {
+                            query: query
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            return process(data.map(item => item
+                            .comp_name));
+                        },
+                        error: function() {
+                            return process([]);
+                        }
                     });
                 }
             });
+
             $('#search-location').typeahead({
                 source: function(query2, process2) {
                     return $.get(path_location, {
@@ -747,51 +776,49 @@
             }
         });
 
-        document.addEventListener("DOMContentLoaded", function () {
-    let paragraphs = document.querySelectorAll(".scrollingText"); // Select all elements with class
+        document.addEventListener("DOMContentLoaded", function() {
+            let paragraphs = document.querySelectorAll(".scrollingText"); // Select all elements with class
 
-    paragraphs.forEach((p) => {
-        let scrollInterval; // Store interval per element
+            paragraphs.forEach((p) => {
+                let scrollInterval; // Store interval per element
 
-        function checkOverflow() {
-            if (p.scrollHeight > p.clientHeight) {
-                p.classList.add("scrolling"); // Enable scrolling
-                startAutoScroll();
-            } else {
-                p.classList.remove("scrolling"); // Disable scrolling if no overflow
-                p.scrollTop = 0; // Reset scroll position
-                clearInterval(scrollInterval); // Stop scrolling
-            }
-        }
-
-        function startAutoScroll() {
-            clearInterval(scrollInterval); // Prevent multiple intervals
-
-            let scrollSpeed = 1; // Adjust speed
-            scrollInterval = setInterval(function () {
-                if (p.scrollTop < p.scrollHeight - p.clientHeight) {
-                    p.scrollTop += scrollSpeed; // Scroll down gradually
-                } else {
-                    p.scrollTop = 0; // Reset scroll to the top
+                function checkOverflow() {
+                    if (p.scrollHeight > p.clientHeight) {
+                        p.classList.add("scrolling"); // Enable scrolling
+                        startAutoScroll();
+                    } else {
+                        p.classList.remove("scrolling"); // Disable scrolling if no overflow
+                        p.scrollTop = 0; // Reset scroll position
+                        clearInterval(scrollInterval); // Stop scrolling
+                    }
                 }
-            }, 50); // Adjust interval for smooth scrolling
-        }
 
-        p.addEventListener("mouseover", function () {
-            clearInterval(scrollInterval);
+                function startAutoScroll() {
+                    clearInterval(scrollInterval); // Prevent multiple intervals
+
+                    let scrollSpeed = 1; // Adjust speed
+                    scrollInterval = setInterval(function() {
+                        if (p.scrollTop < p.scrollHeight - p.clientHeight) {
+                            p.scrollTop += scrollSpeed; // Scroll down gradually
+                        } else {
+                            p.scrollTop = 0; // Reset scroll to the top
+                        }
+                    }, 50); // Adjust interval for smooth scrolling
+                }
+
+                p.addEventListener("mouseover", function() {
+                    clearInterval(scrollInterval);
+                });
+
+                p.addEventListener("mouseleave", function() {
+                    startAutoScroll();
+                });
+
+                checkOverflow();
+
+                window.addEventListener("resize", checkOverflow);
+            });
         });
-
-        p.addEventListener("mouseleave", function () {
-            startAutoScroll();
-        });
-
-        checkOverflow(); 
-
-        window.addEventListener("resize", checkOverflow);
-    });
-});
-
-
     </script>
 </body>
 
