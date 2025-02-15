@@ -186,7 +186,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\Users\\jamshaid\\Desktop\\Git_Refer_Reviews\\newreferreviews\\storage\\framework/cache/data',
+        'path' => 'C:\\Users\\jamshaid\\Desktop\\referriviews\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
