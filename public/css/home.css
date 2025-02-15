@@ -106,12 +106,112 @@
         color: #fff;
         
     }
-    /* .img{
-        margin-left: 8px;
-        width: 10px;
-    } */
     .submit-btn-parent{
         display: flex;
     }
     
+}
+
+/* review cards styling */
+
+.main-div {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #d3ebf8;
+    padding: 8% 10px 10px 10px;
+    gap: 20px;
+    
+}
+.main-div > div {
+    /* background-color: #f1f1f1;
+    border: 1px solid black; */
+    padding: 10px 10px 30px 10px;
+    /* font-size: 30px; */
+    text-align: center;
+
+    position: relative;
+    /* width: 400px;
+    height: 200px; */
+    /* border: 3px solid #73AD21; */
+}
+
+.main-div > div > div {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #fff;
+    padding-top: 17%;
+    padding-bottom: 6px;
+}
+
+.image-parent{
+    position: absolute;
+     /* bottom: 300px; */
+     top: -10%;
+     /* right: 35%;  */
+    /* width: 200px;
+    height: 100px; */
+    left: 50%; /* Move right by 50% of the parent's width */
+    transform: translateX(-50%); /* Adjust for the div's own width */
+    /* transform: translateY(-30%);  */
+    border: 4px solid #d3ebf8;
+
+    background-color: #1d2e57;
+    margin: auto;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+.image-parent > img{
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+}
+.content-box{
+    background-color: #d3ebf8;
+    /* box-shadow: 0 4px 8px 0 #768fce, 0 6px 20px 0 #768fce; */
+    border-radius: 5px;
+    margin: 10px 20px;
+    text-align: start;
+    padding: 0 10px;
+    color: rgb(95, 94, 94)
+}
+.content{
+    height: 150px;
+    overflow-y: scroll
+}
+
+ /* width
+::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  Track
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  Handle
+  ::-webkit-scrollbar-thumb {
+    background: #213770; 
+    border-radius: 10px;
+  } */
+  
+ 
+@media (max-width: 1130px) {
+   .main-div{
+    grid-template-columns: auto auto ;
+    gap: 50px;
+   }
+}
+@media (max-width: 770px) {
+   .main-div{
+    grid-template-columns: auto ;
+    gap: 50px;
+    padding: 15% 10px 10px 10px;
+   }
 }
