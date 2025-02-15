@@ -31,7 +31,7 @@ class HomeController extends Controller
         return view('allcategories',compact('categories'));
     } 
     
-    public function allCompanies(Request $request){
+    public function allCompaniesFilter(Request $request){
         
             $company_name = $request->company_search;
             $company_location = $request->location_search;
@@ -97,7 +97,7 @@ class HomeController extends Controller
         $latestReview = Review::with('get_customer','get_business')
             ->where('status',1)
             ->latest()
-            ->paginate(9);
+            ->paginate(6);
         
         $categories = Category::all();
         $count = Category::count();
