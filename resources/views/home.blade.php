@@ -399,35 +399,33 @@
                                 <i class="fa-solid fa-star text-yellow-500"></i>
                             @endfor
 
-                            @for ($j = $review['rating'] + 1; $j <= 5; $j++)
-                                <i class="fa-regular fa-star text-gray-400"></i>
-                            @endfor
+                        @for ($j = $review['rating'] + 1; $j <= 5; $j++)
+                            <i class="fa-regular fa-star text-gray-400"></i>
+                        @endfor
+                    </div>
+                    <h4><span style="font-size: medium">To </span>{{ isset($review['get_business']['comp_name']) ? $review['get_business']['comp_name'] : '' }}</h4>
+                    <div class="content-box">
+                        <div style="padding: 4px 0px ; font-weight: 700;  color:#000;">
+                            <div>{{ $review->title }}</div>
+                            {{-- <div>14-feb-2025</div> --}}
                         </div>
-                        <h3><span style="font-size: medium">To
-                            </span>{{ isset($review['get_business']['comp_name']) ? $review['get_business']['comp_name'] : '' }}
-                        </h3>
-                        <div class="content-box">
-                            <div style="padding: 4px 0px ; font-weight: 700;  color:#000;">
-                                <div>{{ $review->title }}</div>
-                                {{-- <div>14-feb-2025</div> --}}
-                            </div>
-                            <p class="scrollingText" style="">
-                                {{-- {{ \Illuminate\Support\Str::words($review['review'], 25) }} --}}
-                                {{ $review->review }}
-                            </p>
-                        </div>
-                        <div class="card-date-box">
-                            <div>{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</div>
-                            <a href=""><i class="fa-solid fa-share"></i></a>
-                        </div>
+                        <p class="scrollingText"  style="">
+                            {{-- {{ \Illuminate\Support\Str::words($review['review'], 25) }} --}}
+                            {{ $review->review }}
+                        </p>
+                    </div>
+                    <div class="card-date-box">
+                        <div>{{ \Carbon\Carbon::parse($review->created_at)->diffForHumans() }}</div>
+                        <a href=""><i class="fa-solid fa-share"></i></a>
                     </div>
                 </div>
+            </div>
             @endforeach
 
         </div>
     </div>
 
-    {{-- <div class="vertical__padding">
+    <div class="vertical__padding">
         <div class="container">
             <h5 class="text-sm-h5 search-text pt-5">Read All the Recent User Reviews</h5>
             <div class="row">
@@ -492,7 +490,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <div class="review-section" style=" background-image: url('{{ asset('images/bg-elements.webp') }}');">
         <div class="about_us container">
             <div class="row">
@@ -806,9 +804,10 @@
                     }, 50); // Adjust interval for smooth scrolling
                 }
 
-                p.addEventListener("mouseover", function() {
-                    clearInterval(scrollInterval);
-                });
+        // Stop auto-scroll when user hovers
+        p.addEventListener("mouseover", function () {
+            clearInterval(scrollInterval);
+        });
 
                 p.addEventListener("mouseleave", function() {
                     startAutoScroll();
