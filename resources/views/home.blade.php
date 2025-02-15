@@ -606,7 +606,7 @@
         </div>
     </div>
 
-    {{-- <div class="vertical__padding">
+    <div class="vertical__padding">
         <div class="container">
             <h5 class="text-sm-h5 search-text pt-5">Read All the Recent User Reviews</h5>
             <div class="row">
@@ -671,7 +671,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <div class="review-section" style=" background-image: url('{{ asset('images/bg-elements.webp') }}');">
         <div class="about_us container">
             <div class="row">
@@ -963,6 +963,7 @@
             }, 50); // Adjust interval for smooth scrolling
         }
 
+        // Stop auto-scroll when user hovers
         p.addEventListener("mouseover", function () {
             clearInterval(scrollInterval);
         });
